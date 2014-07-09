@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -23,7 +24,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class HomeActivity extends Activity {
@@ -36,27 +39,31 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.main_home);
 		mProductList = new Vector<Product>();
 		key = "";
-		new cata1GetTask().execute();
+		Button searchButton = (Button) findViewById(R.id.search);
+		searchButton.setOnClickListener(new Button.OnClickListener(){
 
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				EditText searchtext=(EditText) findViewById(R.id.searchcontent);
+				key=searchtext.getText().toString();
+				new cata1GetTask().execute();
+			}
+		});
 	}
 
 	private class cata1GetTask extends AsyncTask<Void, Void, String> {
 		private final String TAG = "cataGetTask";
-		private final String ip = "192.168.137.208";
-		private final String URL = "http://" + ip + "/search";
-
+		private final String ip = "192.168.137.1:8000";
+		private String URL = "http://" + ip + "/search/";
 		@Override
 		protected String doInBackground(Void... params) {
 			String data = "";
 			HttpURLConnection httpUrlConnection = null;
 			try {
+				URL=URL+"?key=apple";
 				httpUrlConnection = (HttpURLConnection) new URL(URL)
 						.openConnection();
-				httpUrlConnection.setRequestMethod("POST");
-				httpUrlConnection.setDoOutput(true);
-				String postcon = "key=" + key;
-				byte[] bypes = postcon.getBytes();
-				httpUrlConnection.getOutputStream().write(bypes);
 				InputStream inStream = httpUrlConnection.getInputStream();
 				data = readStream(inStream);
 			} catch (MalformedURLException e) {
@@ -74,17 +81,11 @@ public class HomeActivity extends Activity {
 		protected void onPostExecute(String result) {
 			ListView listViewCatalog = (ListView) findViewById(R.id.mainlist);
 			try {
-				JSONTokener JSONlist = new JSONTokener(result);
-				while(JSONlist.more()){
-					JSONObject tmpJSON=(JSONObject) JSONlist.nextValue();
-					JSONObject field=tmpJSON.getJSONObject("field");
-					String title=field.getString("title");
-					String des=field.getString("description");
-					double price=field.getDouble("price");
-					String img=field.getString("img");
-					String seller=field.getString("seller");
-					String phone=field.getString("phone");
-					mProductList.add(new Product(title, img, des, price, seller, phone));
+				JSONArray JSONlist = (JSONArray)new JSONTokener(result).nextValue();
+				for(int i=0;i<JSONlist.length()&&i<30;i++){
+					JSONObject tmpJSON=(JSONObject)JSONlist.get(i);
+					JSONObject field=tmpJSON.getJSONObject("fields");
+					mProductList.add(new Product(field.getString("Keyword"),field.getString("Picture"),field.getString("Title"),field.getDouble("Price"),field.getString("Category"),field.getString("href")));
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

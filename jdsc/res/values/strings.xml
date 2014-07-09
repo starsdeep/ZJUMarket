@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">OurThings</string>
-    <string name="ActivityMainTitle">OurThings</string>
+    <string name="app_name">陈国成二手物品交易市场</string>
+    <string name="ActivityMainTitle">陈国成二手物品交易市场</string>
     <string name="main_navigation_home">首页</string>
     <string name="main_navigation_catagory">分类</string>
     <string name="main_navigation_car">我的订单</string>
-    <string name="main_code_buy">登录</string>
+    <string name="main_code_buy">我的京东</string>
     <string name="main_navigation_more">更多</string>
     <string name="app_close">关闭应用程序</string>
     <string name="btn_cancel">取 消</string>
