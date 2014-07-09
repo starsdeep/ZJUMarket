@@ -81,8 +81,8 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.e("test", "on click ");
-				new HttpGetTask().execute();
-				//attemptLogin();
+				//new HttpGetTask().execute();
+				attemptLogin();
 			}
 		});
 		// todo1 register
@@ -207,7 +207,7 @@ public class LoginActivity extends Activity {
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
 			String contentToPost = /*"isAndoid=True" + &*/"username=" + username + "&password=" + password;
-			final String url = "http://192.168.137.208:8000/login";
+			final String url = "http://192.168.137.1:8000/login/";
 			
 			String loginResult = "";
 			HttpURLConnection httpUrlConnection = null;
@@ -220,7 +220,7 @@ public class LoginActivity extends Activity {
 				Log.e(TAG, "about to connect");
 				httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
 				Log.e(TAG, "connnected");
-				/*
+				
 				
 				httpUrlConnection.setDoInput(true);
 				httpUrlConnection.setDoOutput(true);
@@ -228,18 +228,21 @@ public class LoginActivity extends Activity {
 				httpUrlConnection.setUseCaches(false);
 				httpUrlConnection.setInstanceFollowRedirects(false);
 				httpUrlConnection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-				Log.e(TAG, "about to connect");
-				httpUrlConnection.connect();
-				Log.e(TAG, "connected");
-				*/
-
-				
-
-				//DataOutputStream out = new DataOutputStream(httpUrlConnection.getOutputStream());
+				//Log.e(TAG, "about to post connect");
+				//httpUrlConnection.connect();
+				//Log.e(TAG, "post connected");
+				Log.e(TAG, "get output stream");
+				DataOutputStream out = new DataOutputStream(httpUrlConnection.getOutputStream());
+				Log.e(TAG, "get output stream successed");
+				out.writeBytes(contentToPost);				
+				out.flush();
+				out.close();
+				Log.e(TAG, "get input stream");
 				InputStream in = new BufferedInputStream(httpUrlConnection.getInputStream());
-				//out.writeBytes(contentToPost);				
-				//out.flush();
-				loginResult = readStream(in);				
+				Log.e(TAG, "get input stream successed");
+				loginResult = readStream(in);	
+				int responseCode = httpUrlConnection.getResponseCode();
+				Log.e(TAG, "responseCode:" + responseCode);
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				return false;
@@ -252,6 +255,7 @@ public class LoginActivity extends Activity {
 					httpUrlConnection.disconnect();
 			}
 			Log.e(TAG, "the login result is:" + loginResult);
+			Log.e(TAG, "Bolean:" + loginResult.equals("True"));
 			return loginResult.equals("True");
 			// TODO: register the new account here.		
 		}
@@ -259,6 +263,7 @@ public class LoginActivity extends Activity {
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
+			Log.e(TAG, "success?" + success);
 			//showProgress(false);
 
 			if (success) {
@@ -319,7 +324,7 @@ public class LoginActivity extends Activity {
 
 		// Get your own user name at http://www.geonames.org/login
 		// private static final String USER_NAME = "";
-		private static final String URL = "http://192.168.137.208:8000/jtest";
+		private static final String URL = "http://192.168.137.1:8000/login";
 
 		@Override
 		protected String doInBackground(Void... params) {
@@ -377,35 +382,36 @@ public class LoginActivity extends Activity {
 			}
 			String JSONResponse = data.toString();
 			String result = "";
-			// JSON
-			try {
-				// Get top-level JSON Object - a Map
-				JSONObject responseObject = (JSONObject) new JSONTokener(
-						JSONResponse).nextValue();
-				result += "id:" + responseObject.get("id") + "name"
-						+ responseObject.get("name");
-				// Extract value of "earthquakes" key -- a List
-				// JSONArray earthquakes =
-				// responseObject.getJSONArray(EARTHQUAKE_TAG);
-				// Iterate over earthquakes list
-
-				/*
-				 * for (int idx = 0; idx < earthquakes.length(); idx++) {
-				 * 
-				 * // Get single earthquake data - a Map JSONObject earthquake =
-				 * (JSONObject) earthquakes.get(idx);
-				 * 
-				 * // Summarize earthquake data as a string and add it to //
-				 * result result.add(MAGNITUDE_TAG + ":" +
-				 * earthquake.get(MAGNITUDE_TAG) + "," + LATITUDE_TAG + ":" +
-				 * earthquake.getString(LATITUDE_TAG) + "," + LONGITUDE_TAG +
-				 * ":" + earthquake.get(LONGITUDE_TAG)); }
-				 */
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			return result;
+			
+//			// JSON
+//			try {
+//				// Get top-level JSON Object - a Map
+//				JSONObject responseObject = (JSONObject) new JSONTokener(
+//						JSONResponse).nextValue();
+//				result += "id:" + responseObject.get("id") + "name"
+//						+ responseObject.get("name");
+//				// Extract value of "earthquakes" key -- a List
+//				// JSONArray earthquakes =
+//				// responseObject.getJSONArray(EARTHQUAKE_TAG);
+//				// Iterate over earthquakes list
+//
+//				/*
+//				 * for (int idx = 0; idx < earthquakes.length(); idx++) {
+//				 * 
+//				 * // Get single earthquake data - a Map JSONObject earthquake =
+//				 * (JSONObject) earthquakes.get(idx);
+//				 * 
+//				 * // Summarize earthquake data as a string and add it to //
+//				 * result result.add(MAGNITUDE_TAG + ":" +
+//				 * earthquake.get(MAGNITUDE_TAG) + "," + LATITUDE_TAG + ":" +
+//				 * earthquake.getString(LATITUDE_TAG) + "," + LONGITUDE_TAG +
+//				 * ":" + earthquake.get(LONGITUDE_TAG)); }
+//				 */
+//			} catch (JSONException e) {
+//				e.printStackTrace();
+//			}
+			return data.toString();
+			//return result;
 
 		}
 	}
