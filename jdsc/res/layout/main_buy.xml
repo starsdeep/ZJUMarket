@@ -75,7 +75,7 @@
                     android:layout_marginTop="20.0dip"
                     android:paddingTop="10.0dip"
                      android:textColor="@color/black"
-                    android:text="证书名称:" />
+                    android:text="用户名:" />
 
                 <EditText
                     android:id="@+id/login_input_name"
@@ -84,9 +84,9 @@
                     android:layout_alignTop="@+id/login_page_input_name"
                     android:layout_toRightOf="@+id/login_page_input_name"
                     android:background="@drawable/edit_text_x"
-                    android:hint="请选出证书"
+                    android:hint="请输入用户名/邮箱"
                     android:singleLine="true" 
-                    android:editable="false"/>
+                    android:editable="true"/>
 
                 <TextView
                     android:id="@+id/login_page_input_password"
@@ -97,7 +97,7 @@
                     android:layout_marginTop="25.0dip"
                     android:paddingTop="10.0dip"
                     android:textColor="@color/black"
-                    android:text="证书密码:" />
+                    android:text="密码:" />
 
                 <EditText
                     android:id="@+id/login_input_password"
@@ -108,7 +108,7 @@
                     android:layout_below="@+id/login_input_name"
                     android:layout_toRightOf="@+id/login_page_input_password"
                     android:background="@drawable/edit_text_x"
-                    android:hint="请输入证书密码"
+                    android:hint="请输入密码"
                     android:inputType="textPassword"
                     android:singleLine="true" />
 
@@ -150,9 +150,18 @@
                     android:text="注册"
                     android:textColor="#ff000000"
                     android:textSize="20.0sp" />
-
               
             </RelativeLayout>
+            
+            <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:textSize="24sp">
+        	</TextView>
+
+            
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
