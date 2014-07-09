@@ -17,7 +17,7 @@ public class DetailActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.test);
+		setContentView(R.layout.main_detail);
 		Log.e("DeStart", "go");
 		@SuppressWarnings("unchecked")
 		List<Product> catalog=(List<Product>)getIntent().getExtras().getSerializable("list");

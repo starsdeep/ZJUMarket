@@ -20,10 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-
-
-import com.google.android.gms.internal.e;
-
 import android.R.string;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -452,7 +448,7 @@ public class LoginActivity extends Activity {
 				InputStream in = new BufferedInputStream(
 						httpUrlConnection.getInputStream());
 				out.writeBytes(contentToPost);
-				// 刷新、关闭
+				// 鍒锋柊銆佸叧闂�
 				out.flush();
 
 				data = readStream(in);

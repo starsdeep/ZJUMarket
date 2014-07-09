@@ -4,7 +4,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffefebe7" >
-    
     <RelativeLayout
         android:id="@+id/top_relative"
         android:layout_width="fill_parent"
