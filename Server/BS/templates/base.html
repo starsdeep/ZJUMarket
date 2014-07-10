@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <meta charset="utf-8" />
+	    <title>{% block title %}{% endblock %}</title>
+	    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	    <meta content="" name="description" />
+	    <meta content="" name="author" />
+
+	   <!-- BEGIN GLOBAL MANDATORY STYLES -->          
+	   <link href="/site_media/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	   <link href="/site_media/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	   <!-- END GLOBAL MANDATORY STYLES -->
+	   
+	   <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
+	   <link href="/site_media/assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />              
+	   <link rel="stylesheet" href="/site_media/assets/plugins/revolution_slider/css/rs-style.css" media="screen">
+	   <link rel="stylesheet" href="/site_media/assets/plugins/revolution_slider/rs-plugin/css/settings.css" media="screen"> 
+	   <link href="/site_media/assets/plugins/bxslider/jquery.bxslider.css" rel="stylesheet" />                
+	   <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+	   <!-- BEGIN THEME STYLES --> 
+	   <link href="/site_media/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+	   <link href="/site_media/assets/css/style.css" rel="stylesheet" type="text/css"/>
+	   <link href="/site_media/assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+	   <link href="/site_media/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	   <link href="/site_media/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+	   <!-- END THEME STYLES -->
+
+	   <link rel="shortcut icon" href="/site_media/assets/favicon.ico" />
+	</head>
+	<body>
+	    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <button class="navbar-toggle btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN LOGO (you can use logo image instead of text)-->
+                <a style="font-size:30px" class="navbar-brand logo-v1" href="/index">
+                    <!-- <img src="/site_media/assets/img/logo_blue.png" id="logoimg" alt=""> -->
+                    CGC比价
+                </a>
+                <!-- END LOGO -->
+            </div>
+        
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown active">
+                            <a class="dropdown-toggle" href="/index">
+                            主页
+                            <!-- <i class="fa fa-angle-down"></i> -->
+                        </a>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            关于
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">比价搜索引擎1.0版本</a></li>
+                            <li><a href="#">联系作者，邮箱122434949@qq.com</a></li>
+                        </ul>
+                    </li>
+
+                    
+                    {% if username == null %}
+                    {% endif %}
+  
+                    {% if user.is_authenticated %}
+                    <li class="dropdown">
+
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            {{ user.username }}
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/profile">个人中心</a></li>
+                            <li><a href="/logout">注销</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="/login">
+                            登陆
+                        </a>
+                    </li>    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="/register">
+                            注册
+                        </a>
+                    </li>    
+
+                    {% endif %}
+
+                    <!-- <li><a href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin&page=index.html" target="_blank">Admin Theme</a></li> -->
+                    <li class="menu-search">
+
+
+                        <!-- <span class="sep"></span> -->
+                        <!-- <i class="fa fa-search search-btn"></i> -->
+                        <div>
+                        <!-- <div class="search-box"> -->
+                            <form action="/search" method="get">
+                                <div class="input-group input-large">
+                                    <input class="form-control" type="text" placeholder="请输入关键字" name='key'>
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn theme-btn" value="Submit" name="query">搜索</button>
+                                    </span>
+                                </div>
+                            </form>
+                            
+                        </div> 
+                        <!-- </i> -->
+                    </li>
+                </ul>                           
+            </div>
+            <!-- BEGIN TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END HEADER -->
+
+	{% block content %}{% endblock %}
+	    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="/site_media/assets/plugins/respond.min.js"></script>  
+    <![endif]-->  
+    <script src="/site_media/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="/site_media/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="/site_media/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script type="text/javascript" src="/site_media/assets/plugins/hover-dropdown.js"></script>
+    <script type="text/javascript" src="/site_media/assets/plugins/back-to-top.js"></script>    
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script type="text/javascript" src="/site_media/assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
+    <script type="text/javascript" src="/site_media/assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="/site_media/assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script> 
+    <script type="text/javascript" src="/site_media/assets/plugins/bxslider/jquery.bxslider.min.js"></script>
+    <script src="/site_media/assets/scripts/app.js"></script>
+    <script src="/site_media/assets/scripts/index.js"></script>    
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();    
+            App.initBxSlider();
+            Index.initRevolutionSlider();                    
+        });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+
+	</body>
+</html>

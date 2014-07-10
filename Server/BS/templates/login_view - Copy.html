@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+登陆
+{% endblock %}
+{% block content %}
+
+<div class="page-container">
+    <!-- BEGIN BREADCRUMBS -->   
+    <div class="row breadcrumbs margin-bottom-40">
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <h1>登陆</h1>
+            </div>
+            <div class="col-md-8 col-sm-8">
+                <ul class="pull-right breadcrumb">
+                    <li><a href="index.html">主页</a></li>
+
+                    <li class="active">登陆</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <!-- END BREADCRUMBS -->
+	<div class="container margin-bottom-40">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 login-signup-page">
+			    <form action="/login_view/" method="post">{% csrf_token %}          
+			        
+			        <h2>登录账户</h2>
+
+			        <div class="input-group margin-bottom-20">
+			            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+			            <input name="name" type="text" class="form-control" placeholder="用户名">
+			        </div>                  
+			        <div class="input-group margin-bottom-20">
+			            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+			            <input name="password" type="password" class="form-control" placeholder="密码">
+
+			        </div>                    
+
+			        <div class="row">
+			            <div class="col-md-6 col-sm-6">
+			                <div class="checkbox-list"><label class="checkbox"><input type="checkbox"> 记住我</label></div>                        
+			            </div>
+			            <div class="col-md-6 col-sm-6">
+			                <button type="submit" class="btn theme-btn pull-right" value="Submit">登陆</button>                        
+			            </div>
+
+			        </div>
+			        			            {% if fail == 'fail'%}
+			            <div class="col-md-8 col-sm-6">
+			            	account or password wrong
+			            </div>
+			            {% endif %}
+			    </form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

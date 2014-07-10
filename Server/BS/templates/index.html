@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% block title %}
+CGC比价网主页
+{% endblock %}
+{% block content %}
+
+
+
+    <!-- BEGIN PAGE CONTAINER -->  
+    <div class="page-container">
+        <!-- BEGIN REVOLUTION SLIDER -->    
+        <div class="fullwidthbanner-container slider-main">
+            <div class="fullwidthabnner">
+                <ul id="revolutionul" style="display:none;">            
+                        <!-- THE FIRST SLIDE -->
+                        <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="3000" data-thumb="/site_media/assets/img/sliders/revolution/thumbs/thumb2.jpg">
+                            <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
+                            <img src="/site_media/assets/img/sliders/revolution/bg1.jpg" alt="">
+                            
+                            <div class="caption lft slide_title slide_item_left"
+                                 data-x="250"
+                                 data-y="105"
+                                 data-speed="700"
+                                 data-start="0"
+                                 data-easing="easeOutExpo">
+                                 <a href="http://sale.jd.com/act/bFKYm5ahu3PlN.html?erpad_source=erpad&erpad_source=erpad"><img src="/site_media/assets/img/jd.jpg" alt=""></a>
+                                 
+                            </div>
+                            
+                        </li>
+
+                        <!-- THE SECOND SLIDE -->
+                        <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-delay="3000" data-thumb="/site_media/assets/img/sliders/revolution/thumbs/thumb2.jpg">                        
+                            <img src="/site_media/assets/img/sliders/revolution/bg2.jpg" alt="">
+                            <div class="caption lfl slide_title slide_item_left"
+                                 data-x="250"
+                                 data-y="125"
+                                 data-speed="700"
+                                 data-start="0"
+                                 data-easing="easeOutExpo">
+                                 <a href="http://sale.jd.com/act/Ycmy1x3MwSKlrOA.html?erpad_source=erpad"><img src="/site_media/assets/img/jd2.jpg" alt=""></a>
+                                 
+                            </div>
+                            
+
+                        </li>
+                        
+                        <!-- THE THIRD SLIDE -->
+                        <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="3000" data-thumb="/site_media/assets/img/sliders/revolution/thumbs/thumb2.jpg">
+                            <img src="/site_media/assets/img/sliders/revolution/bg3.jpg" alt="">
+                            <div class="caption lfl slide_item_left" 
+                                 data-x="250" 
+                                 data-y="95" 
+                                 data-speed="700" 
+                                 data-start="0" 
+                                 data-easing="easeOutBack">
+   
+                                 <a href="http://www.amazon.cn/gp/product/B00CWPIDHI/ref=amb_link_75248652_2?pf_rd_m=A1AJ19PSB66TGU&pf_rd_s=center-1&pf_rd_r=0YMJQ5VD6P94WWSF1DX0&pf_rd_t=101&pf_rd_p=176858972&pf_rd_i=899254051"><img src="/site_media/assets/img/amazon.jpg" alt=""></a>
+                                                                 
+                            </div>
+                            
+                        </li>               
+                        
+                        <!-- THE FORTH SLIDE -->
+                        <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="3000" data-thumb="/site_media/assets/img/sliders/revolution/thumbs/thumb2.jpg">
+                            <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
+                            <img src="/site_media/assets/img/sliders/revolution/bg4.jpg" alt="">                        
+                             <div class="caption lft slide_title"
+                                 data-x="250"
+                                 data-y="105"
+                                 data-speed="700"
+                                 data-start="0"
+                                 data-easing="easeOutExpo">
+                                 <a href="http://www.taobao.com/market/omg_new.php?spm=1.7274553.1997517397.6.dN73bR&acm=20140506002.1003.2.77836&uuid=lsRrf0Ph&scm=1003.2.20140506002.OTHER_1404977231038_77836&pos=0"><img src="/site_media/assets/img/taobao.png" alt=""></a>
+                            </div>
+                                                  
+                        </li>
+                </ul>
+                <div class="tp-bannertimer tp-bottom"></div>
+            </div>
+        </div>
+        <!-- END REVOLUTION SLIDER -->
+
+
+
+        {% if not result == None %}
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table table-hover  table-condensed">
+                    {% autopaginate result 10 %}
+                    <tr>
+                        <td><h2>商品</h2></td>
+                        <td><h2>商品描述</h2></td>
+                        <!-- <td><h2>价格:<a href="/search/?order='1'"><font color="red">↑</font></a>/<a a href="/search" name="des"><font color="red">↓</font></a></h2></td> -->
+                        <td><h2>价格</h2>
+                        <form action="/search" method="get"><button type="submit" class="btn btn-info" value="Submit" name="asc">升序</button>
+                            <button type="submit" class="btn btn-info" value="Submit" name="des">降序</button></form></td>
+                        <td><h2>电商</h2></td>
+                    </tr>
+                    {% for obj in result %}
+                        <tr>
+                            <td width="10%"><a href={{ obj.href }}><img src={{ obj.Picture }} width="110" height="110"></a></td>
+                            <td width="50%"><a style="font-size:14px" href={{ obj.href }}>{{ obj.Title }}</a></td>
+                            <td width="20%"><strong><font color="red">￥{{ obj.Price }}</font></strong></td>
+                            <td >{{ obj.Category }}</td>
+                        </tr>
+                    {% endfor %}                   
+                </table>
+            </div>
+            {% paginate %}
+        {% endif %}
+
+{% endblock %}

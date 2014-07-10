@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+
+<!DOCTYPE HTML>
+
+{% block content %}
+		<!----start-bg---->
+		<div class="bg">
+			<!----start-container---->
+			<div class="container">
+				<!---- start-header---->
+				<div class="row header">
+					<div class="row">
+						<div class="col-md-6">
+							<!----start-logo---->
+							<div class="well logo">
+								<a href="/site_media/#"><img src="/site_media/images/logo.png" title="1" /></a>
+							</div>
+							<!----//End-logo---->
+						</div>
+						<!-- {% if info == 'success' %} -->
+  							
+  						<!-- {% endif %} -->
+
+						<div class="well col-md-6">
+	
+							{% if user.is_authenticated %}
+							<p><i>Welcome, {{ user.username }}. Thanks for logging in.</i></p>
+							<p><a class="btn btn-primary btn-lg b-btn" href="/logout"> logout</a></p>
+							{% else %}
+							<div class="login-info well header-right">
+								<p><i><a href="/register">Do not have an account ?</a></i><a class="login btn-primary" href=/login>Login</a></p>
+							</div>
+							{% endif %}
+			
+						</div>
+					</div>
+				</div>
+					<!---- //End-header---->
+					<!-----slide-banner---->
+					<div class="well slide-banner row">
+						<div class="slide-banner-left col-md-8">
+							<span> </span>
+							<h1>比价搜索引擎</h1>
+							<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>-->
+							<form role="form" action="/search/" method="post">{% csrf_token %}
+									<p><input type="text" name="key" /><br /></p>
+									<p><input class="btn btn-primary btn-lg b-btn" type="submit" value="Submit" name="query"/></p>
+									<p><input class="btn btn-primary btn-lg b-btn" type="submit" value="低到高" name="asc"/></p>
+									<p><input class="btn btn-primary btn-lg b-btn" type="submit" value="高到低" name="des"/></p>
+							</form>
+							<!-- <p><a class="btn btn-primary btn-lg b-btn" href="/site_media/#"> Read More</a></p> -->
+						</div>
+						<div class="well slide-banner-right col-md-4">
+							<img src="/site_media/images/slider-img.png" class="img-responsive" alt="" /> 
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<!-----//slide-banner---->
+
+				</div>
+				</div>
+			{% if not result == None %}
+				<div class="col-md-10 col-md-offset-1">
+					<table class="table table-hover table-bordered table-condensed">
+						
+						{% autopaginate result 10 %}
+						{% for obj in result %}
+							<tr class="success">
+								<td width="10%"><a href={{ obj.href }}><img src={{ obj.Picture }} width="80" height="80"></a></td>
+								<td width="70%"><a href={{ obj.href }}>{{ obj.Title }}</a></td>
+								<td>{{ obj.Price }}</td>
+								<td>{{ obj.Category }}</td>
+							</tr>
+						
+
+						{% endfor %}
+
+						
+						
+						
+					</table>
+					{% paginate %}
+				</div>
+
+			{% endif %}
+				<!----start-top-grids---->
+				
+				<!----//End-footer--->
+			<!----//End-container---->
+		
+	<!----start-bg---->
+
+
+{% endblock %}

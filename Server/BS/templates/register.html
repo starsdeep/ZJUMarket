@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+注册
+{% endblock %}
+{% block content %}
+<div class="page-container">
+    <!-- BEGIN BREADCRUMBS -->   
+    <div class="row breadcrumbs margin-bottom-40">
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <h1>注册</h1>
+            </div>
+            <div class="col-md-8 col-sm-8">
+                <ul class="pull-right breadcrumb">
+                    <li><a href="index.html">主页</a></li>
+
+                    <li class="active">注册</li>
+                </ul>
+            </div>            
+        </div>
+    </div>
+
+  <div class="container margin-bottom-40">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 login-signup-page">
+          <form action="/register/" method="post">{% csrf_token %}          
+              
+              <h2>注册账户</h2>
+
+              {{ form.as_p }}                   
+
+              <div class="row">
+                  
+                  <div class="col-md-3 col-sm-6">
+                      <button type="submit" class="btn theme-btn pull-right" value="Submit">注册</button>                        
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>  
+</div>
+
+  
+{% endblock %}

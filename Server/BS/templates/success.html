@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+<!DOCTYPE HTML>
+
+{% block content %}
+
+
+<div class="page-container">
+    <!-- BEGIN BREADCRUMBS -->   
+    <div class="row breadcrumbs margin-bottom-40">
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <h1>登陆</h1>
+            </div>
+            <div class="col-md-8 col-sm-8">
+                <ul class="pull-right breadcrumb">
+                    <li><a href="index.html">主页</a></li>
+
+                    <li class="active">登陆</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <!-- END BREADCRUMBS -->
+	<div class="container margin-bottom-40">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 login-signup-page">
+			    <h1> 注册成功!</h1>
+				<h2>谢谢您的注册,现在您可以</h2>
+				<a style="font-size:14px" href = "/login" > 登 录 </a > 
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

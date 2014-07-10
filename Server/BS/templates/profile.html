@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}
+个人中心
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="page-container">
+
+    <!-- BEGIN BREADCRUMBS -->   
+    <div class="row breadcrumbs margin-bottom-40">
+        <div class="container">
+            <div class="col-md-4 col-sm-4">
+                <h1>个人中心</h1>
+            </div>
+            <div class="col-md-8 col-sm-8">
+                <ul class="pull-right breadcrumb">
+                    <li><a href="index.html">主页</a></li>
+
+                    <li class="active">个人中心</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END BREADCRUMBS -->
+
+	<!-- BEGIN CONTAINER -->   
+	<div class="container min-hight margin-bottom-40">
+		<div class="row">
+			<div class="col-md-3">
+                <ul class="ver-inline-menu tabbable margin-bottom-10">
+                  <li class="active">
+                     <a data-toggle="tab" href="#tab_1">
+                     兴趣设置
+                     </a> 
+                     <span class="after"></span>                                    
+                  </li>
+           
+                  <li><a data-toggle="tab" href="#tab_4">联系作者</a></li>
+
+                </ul>        
+			</div>
+
+			<div class="col-md-9">
+                <!-- BEGIN TAB CONTENT -->
+                <div class="tab-content">
+                  <!-- START TAB 1 -->
+                    <div id="tab_1" class="tab-pane active">
+                        <div id="accordion1" class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_1">
+                                            添加或删除感兴趣商品,点击关键字查看部分结果，详情请在搜索栏中查询
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div >
+                                    <div class="panel-body">
+                                        <form action="/profile/" method="post" class="form-inline" role="form">{% csrf_token %}  
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                <input type="text" class="form-control" placeholder="请输入关键字" name='keyword'>
+                                            </div>
+                                            <button type="submit" class="btn theme-btn " value="Submit">添加</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if not result == None %}
+                                {% for k,v in Queryset.items %}
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#{{ forloop.counter }}">
+                                                {{ k }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id={{ forloop.counter }} class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <table class="table table-hover  table-condensed">
+                                                {% for item in v %}
+                                                    <tr>
+                                                        <td width="10%"><a href={{ item.href }}><img src={{ item.Picture }} width="60" height="60"></a></td>
+                                                        <td width="40%"><a style="font-size:14px" href={{ item.href }}>{{ item.Title }}</a></td>
+                                                        <td width="10%"><strong><font color="red">￥{{ item.Price }}</font></strong></td>
+                                                        <td >{{ item.Category }}</td>
+                                                    </tr>  
+                                                {% endfor %}
+                                                </table>
+             
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %} 
+                            {% endif %}
+                        </div>
+                    </div>                  
+                  <!-- END TAB 1 -->
+
+                  <!-- START TAB 4 -->
+                  <div id="tab_4" class="tab-pane">
+                     <div id="accordion3" class="panel-group">
+                        <div class="panel panel-danger">
+                           <div class="panel-heading">
+                              <h4 class="panel-title">
+                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#accordion3_1">
+                                 电子邮箱
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="accordion3_1" class="panel-collapse collapse  in">
+                              <div class="panel-body">
+                                <p>
+                                    122434949@qq.com
+                                </p>
+                              </div>
+                           </div>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <!-- END TAB 4 -->
+                </div>
+                <!-- END TAB CONTENT -->
+			</div>            
+		</div>
+	</div>
+	<!-- END CONTAINER -->
+
+</div>	
+{% endif %}
+{% endblock %}

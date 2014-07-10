@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+<!DOCTYPE HTML>
+
+{% block content %}
+
+<form action="/search/" method="post">{% csrf_token %}
+		name: <input type="text" name="key" /><br />
+		<input type="submit" value="query" />
+		<input type="submit" value="order" />
+</form>
+
+<table class="table table-hover">
+	{% for obj in result %}
+		<tr>
+			<td><a href={{ obj.href }}><img src={{ obj.Picture }} width="80" height="80"></a></td>
+			<td><a href={{ obj.href }}>{{ obj.Title }}</a></td>
+			<td>{{ obj.Price }}</td>
+			<td>{{ obj.Category }}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+
+{% endblock %}

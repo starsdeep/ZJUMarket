@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+<!DOCTYPE HTML>
+
+{% block content %}
+<form action="/index/" method="post">{% csrf_token %}
+		name: <input type="text" name="key" /><br />
+		password: <input type="password" name="password" /><br />
+		<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
