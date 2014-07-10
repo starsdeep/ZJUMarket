@@ -76,12 +76,23 @@ public class LoginActivity extends Activity {
 		loginButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.e("test", "on click ");
+				Log.e("test", "on login click ");
 				//new HttpGetTask().execute();
 				attemptLogin();
 			}
 		});
 		// todo1 register
+		registerButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.e("test", "on register click ");
+				Intent intObj = new Intent(getBaseContext(),RegisterActivity.class);
+				startActivity(intObj);
+			}
+		});
+		
+		
+		
 	}
 
 	public void attemptLogin() {
@@ -412,88 +423,5 @@ public class LoginActivity extends Activity {
 		}
 	}
 
-	private class HttpPostTask extends AsyncTask<Void, Void, String> {
-
-		private static final String TAG = "HttpPostTask";
-		private static final String url = "10.180.32.23";
-		String username = usernameText.getText().toString();
-		String password = passwordText.getText().toString();
-
-		@Override
-		protected String doInBackground(Void... params) {
-			String data = "";
-			HttpURLConnection httpUrlConnection = null;
-
-			try {
-
-				Log.e(TAG, "socket about to up,username:" + username
-						+ "password:" + password);
-
-				httpUrlConnection = (HttpURLConnection) new URL(url)
-						.openConnection();
-				httpUrlConnection.setDoInput(true);
-				httpUrlConnection.setDoOutput(true);
-				httpUrlConnection.setRequestMethod("POST");
-				httpUrlConnection.setUseCaches(false);
-				httpUrlConnection.setInstanceFollowRedirects(false);
-				httpUrlConnection.setRequestProperty("Content-Type",
-						"application/x-www-form-urlencoded");
-				httpUrlConnection.connect();
-
-				String contentToPost = "isAndoid=True" + "&username="
-						+ username + "&password=" + password;
-
-				DataOutputStream out = new DataOutputStream(
-						httpUrlConnection.getOutputStream());
-				InputStream in = new BufferedInputStream(
-						httpUrlConnection.getInputStream());
-				out.writeBytes(contentToPost);
-				// 鍒锋柊銆佸叧闂�
-				out.flush();
-
-				data = readStream(in);
-
-			} catch (MalformedURLException exception) {
-				Log.e(TAG, "MalformedURLException");
-			} catch (IOException exception) {
-				Log.e(TAG, "IOException");
-			} finally {
-				if (null != httpUrlConnection)
-					httpUrlConnection.disconnect();
-			}
-			return data;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			mTextView.setText(result);
-
-		}
-
-		// readStream to a String
-		private String readStream(InputStream in) {
-			BufferedReader reader = null;
-			StringBuffer data = new StringBuffer();
-			try {
-				reader = new BufferedReader(new InputStreamReader(in));
-				String line = "";
-				while ((line = reader.readLine()) != null) {
-					data.append(line);
-				}
-			} catch (IOException e) {
-				Log.e("test", "IOException");
-			} finally {
-				if (reader != null) {
-					try {
-						reader.close();
-					} catch (IOException e) {
-						Log.e("test", "IOException");
-					}
-				}
-			}
-			return data.toString();
-		}
-		//
-
-	}
+	
 }
