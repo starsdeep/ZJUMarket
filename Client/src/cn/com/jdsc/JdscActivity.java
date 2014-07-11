@@ -83,7 +83,7 @@ public class JdscActivity extends TabActivity {
     	tabHost.addTab(tabHost.newTabSpec("catagory").setIndicator("catagory")
 				.setContent(new Intent(this, CategoryActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("car").setIndicator("car")
-				.setContent(new Intent(this, CarActivity.class)));
+				.setContent(new Intent(this, RecordActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("buy")
 				.setContent(new Intent(this, LoginActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("more").setIndicator("more")

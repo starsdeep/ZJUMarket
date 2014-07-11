@@ -3,7 +3,9 @@
     android:id="@+id/empty_cart_view"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffefebe7" >
+    android:background="#ffefebe7"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:id="@+id/top_relative"
@@ -61,11 +63,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/top_relative"
+        android:layout_below="@id/top_relative"
         android:layout_marginLeft="22dp"
         android:layout_marginTop="30dp"
         android:ems="10" />
-    
+    <TextView
+        android:id="@+id/hidwarn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchcontent"
+        android:text="请输入搜索内容！"
+        android:layout_margin="15dp"
+        android:visibility="invisible"
+        android:textSize="20dp"
+        android:textColor="#FF322C"
+        />
     <ListView      
         android:id="@+id/mainlist"
         android:layout_height="wrap_content"
@@ -74,6 +86,14 @@
         android:clickable="true"
       	android:layout_marginTop="130dp"
       	android:cacheColorHint="#00000000"/>
-    
+
+    <ProgressBar
+        android:id="@+id/HomeprogressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hidwarn"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

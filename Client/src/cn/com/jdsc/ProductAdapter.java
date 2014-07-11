@@ -58,7 +58,7 @@ public class ProductAdapter extends BaseAdapter{
 		Bitmap img=getBitmap(curProduct.productImage);
 		item.productImageView.setImageBitmap(img);
 		item.productTitle.setText(curProduct.title);
-		item.productPrice.setText("¼Û¸ñ: "+curProduct.price);
+		item.productPrice.setText("£¤"+curProduct.price);
 		return convertView;
 	}
 	public Bitmap getBitmap(String s)  

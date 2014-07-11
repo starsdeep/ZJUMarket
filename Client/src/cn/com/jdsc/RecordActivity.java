@@ -23,58 +23,36 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
-public class HomeActivity extends Activity {
-	private List<Product> mProductList;
-	private String key;
-
+public class RecordActivity extends Activity {
+	private List<Product> RecordList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_home);
-		
-		/*mProductList=HomeCat.getCatalog(getResources());*/
-		key = "";
-		Button searchButton = (Button) findViewById(R.id.search);
-		searchButton.setOnClickListener(new Button.OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				mProductList = new Vector<Product>();
-				EditText searchtext=(EditText) findViewById(R.id.searchcontent);
-				TextView hid=(TextView)findViewById(R.id.hidwarn);
-				key=searchtext.getText().toString();
-				if(key.equals("")){
-					hid.setVisibility(View.VISIBLE);
-				}
-				else{
-					hid.setVisibility(View.INVISIBLE);
-					new cata1GetTask().execute();
-				}
-			}
-		});
+		setContentView(R.layout.main_record);
+		RecordList=new Vector<Product>();
+		new recTask().execute();
 	}
 
-	private class cata1GetTask extends AsyncTask<Void, Void, String> {
-		private final String TAG = "cataGetTask";
+	private class recTask extends AsyncTask<Void, Void, String> {
+		private final String TAG = "recGetTask";
 		private final String ip = "192.168.137.1:8000";
-		private String URL = "http://" + ip + "/search/";
+		private String URL = "http://" + ip + "/buy/";
+
 		@Override
 		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
 			String data = "";
 			HttpURLConnection httpUrlConnection = null;
 			try {
-				
-				key=URLEncoder.encode(key,"utf-8");
-				URL=URL+"?type=android&key="+key;
+				String username="324159";
+				URL = URL + "?type=android&username=" + username;
 				httpUrlConnection = (HttpURLConnection) new URL(URL)
 						.openConnection();
 				InputStream inStream = httpUrlConnection.getInputStream();
@@ -89,24 +67,30 @@ public class HomeActivity extends Activity {
 			}
 			return data;
 		}
-
-		@Override
+		
 		protected void onPostExecute(String result) {
-			ListView listViewCatalog = (ListView) findViewById(R.id.mainlist);
-			try {
-				JSONArray JSONlist = (JSONArray)new JSONTokener(result).nextValue();
-				for(int i=0;i<JSONlist.length()&&i<30;i++){
-					JSONObject tmpJSON=(JSONObject)JSONlist.get(i);
+			ListView reListView=(ListView)findViewById(R.id.recordlist);
+			try{
+				JSONTokener reTokener=new JSONTokener(result);
+				JSONArray buylist=(JSONArray)reTokener.nextValue();
+				for (int i=0;i<buylist.length();i++){
+					JSONObject tmpJSON=(JSONObject)buylist.get(i);
 					JSONObject field=tmpJSON.getJSONObject("fields");
-					mProductList.add(new Product(field.getString("Keyword"),field.getString("Picture"),field.getString("Title"),field.getDouble("Price"),field.getString("Category"),field.getString("href"),tmpJSON.getInt("pk")));
+					RecordList.add(new Product(field.getInt("PID"), field.getBoolean("isBuy")));
 				}
-			} catch (JSONException e) {
+				for(int i=0;i<RecordList.size();i++){
+					JSONArray JSONlist = (JSONArray)reTokener.nextValue();
+					JSONObject tmpJSON=(JSONObject)JSONlist.get(0);
+					JSONObject field=tmpJSON.getJSONObject("fields");
+					RecordList.get(i).setInfo(field.getString("Keyword"), field.getString("Picture"), field.getString("Title"), field.getDouble("Price"), field.getString("Category"), field.getString("href"));
+				}
+			}catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			listViewCatalog.setAdapter(new ProductAdapter(mProductList,
-					getLayoutInflater()));
-			listViewCatalog.setOnItemClickListener(new OnItemClickListener() {
+			reListView.setAdapter(new RecordListAdapter(RecordList, getLayoutInflater()));
+			reListView.setOnItemClickListener(new OnItemClickListener() {
+
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
@@ -114,12 +98,12 @@ public class HomeActivity extends Activity {
 					Intent productDetailsIntent = new Intent(getBaseContext(),
 							DetailActivity.class);
 					productDetailsIntent.putExtra("index", position);
-					productDetailsIntent.putExtra("list", (Serializable)mProductList);
+					productDetailsIntent.putExtra("list", (Serializable)RecordList);
 					startActivity(productDetailsIntent);
-				}
-			});
+				}	
+			});	
 		}
-
+		
 		private String readStream(InputStream in) {
 			BufferedReader reader = null;
 			StringBuffer data = new StringBuffer("");

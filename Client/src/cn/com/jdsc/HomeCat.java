@@ -15,68 +15,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 public class HomeCat {
 	private static List<Product> catalog;
-	private String key;
-	public List<Product> getCatalog(Resources res,String key1){
+	public static List<Product> getCatalog(Resources res){
 		catalog=new Vector<Product>();
-		key=key1;
-		new cataGetTask().execute();
-		
+		for(int i=0;i<20;i++){
+			catalog.add(new Product("二手自行车", "http://g.search.alicdn.com/img/bao/uploaded/i4/i1/T1qTO0FPlcXXXXXXXX_!!0-item_pic.jpg_250x250.jpg", "超级棒的九成新永久自行车，好萌好萌好萌啊，你永远是我的小呀小苹果", 700, "小明", "4008208820",1));
+		}
 		return catalog;
-	}
-	private class cataGetTask extends AsyncTask<Void,Void,String>{
-		private final String TAG = "cataGetTask";
-		private final String ip="192.168.137.208";
-		private final String URL="http://"+ip+"/search";
-		@Override
-		protected String doInBackground(Void... params) {
-			String data="";
-			HttpURLConnection httpUrlConnection=null;
-			
-			try{
-				httpUrlConnection=(HttpURLConnection)new URL(URL).openConnection();
-				httpUrlConnection.setRequestMethod("POST");
-				httpUrlConnection.setDoOutput(true);
-				String postcon="key="+key;
-				byte[] bypes = postcon.getBytes();
-				httpUrlConnection.getOutputStream().write(bypes);
-				InputStream inStream=httpUrlConnection.getInputStream();
-				data=readStream(inStream);
-			}catch(MalformedURLException e){
-				Log.e(TAG, "MalformedURLException");
-			} catch (IOException exception) {
-				Log.e(TAG, "IOException");
-			} finally {
-				if (null != httpUrlConnection)
-					httpUrlConnection.disconnect();
-			}
-			return data;
-		}
-		
-		@Override
-		protected void onPostExecute(String result){
-			
-		}
-		private String readStream(InputStream in) {
-			BufferedReader reader = null;
-			StringBuffer data = new StringBuffer("");
-			try {
-				reader = new BufferedReader(new InputStreamReader(in));
-				String line = "";
-				while ((line = reader.readLine()) != null) {
-					data.append(line);
-				}
-			} catch (IOException e) {
-				Log.e(TAG, "IOException");
-			} finally {
-				if (reader != null) {
-					try {
-						reader.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			return data.toString();
-		}
 	}
 }
