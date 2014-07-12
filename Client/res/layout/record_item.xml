@@ -3,7 +3,8 @@
     android:id="@+id/RecordItem"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:descendantFocusability= "blocksDescendants">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -59,6 +60,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/rePrice"
             android:layout_marginRight="5dp"
+            android:focusable= "false" 
             android:text="取消订单" />
 
     </RelativeLayout>

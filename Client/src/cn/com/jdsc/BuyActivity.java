@@ -11,7 +11,8 @@ protected void onCreate(Bundle savedInstanceState) {
 	setContentView(R.layout.main_buy);
 }
    
-   public void onResume(){
+   @Override
+public void onResume(){
    	if(getRequestedOrientation()!=ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
    		  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
    	}

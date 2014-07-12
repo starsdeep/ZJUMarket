@@ -26,7 +26,8 @@ public class JdscActivity extends TabActivity {
         init();
         ExitManager.getInstance().addActivity(this);
     }
-    public void onResume(){
+    @Override
+	public void onResume(){
     	if(getRequestedOrientation()!=ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
     		  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     	}
@@ -40,6 +41,7 @@ public class JdscActivity extends TabActivity {
 		main_tab_more = (RadioButton) findViewById(R.id.main_tab_more);
 		main_tab_home.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("home");
 
@@ -48,6 +50,7 @@ public class JdscActivity extends TabActivity {
 
 		main_tab_catagory.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("catagory");
 
@@ -55,6 +58,7 @@ public class JdscActivity extends TabActivity {
 		});
 		main_tab_car.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("car");
 
@@ -62,6 +66,7 @@ public class JdscActivity extends TabActivity {
 		});
 		main_tab_buy.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("buy");
 
@@ -69,6 +74,7 @@ public class JdscActivity extends TabActivity {
 		});
 		main_tab_more.setOnClickListener(new OnClickListener() {
 
+			@Override
 			public void onClick(View view) {
 				tabHost.setCurrentTabByTag("more");
 
@@ -87,10 +93,11 @@ public class JdscActivity extends TabActivity {
 		tabHost.addTab(tabHost.newTabSpec("buy").setIndicator("buy")
 				.setContent(new Intent(this, LoginActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("more").setIndicator("more")
-				.setContent(new Intent(this, MoreActivity.class)));
+				.setContent(new Intent(this, UcenterActivity.class)));
     }
     
-    public boolean dispatchKeyEvent( KeyEvent event) {
+    @Override
+	public boolean dispatchKeyEvent( KeyEvent event) {
 		int keyCode=event.getKeyCode();
 	      if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (event.getRepeatCount() == 0) {
@@ -101,6 +108,7 @@ public class JdscActivity extends TabActivity {
 				alertDialog.setPositiveButton(JdscActivity.this
 						.getString(R.string.btn_ok),
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
 								ExitManager.getInstance().exit();
@@ -109,6 +117,7 @@ public class JdscActivity extends TabActivity {
 				alertDialog.setNegativeButton(JdscActivity.this
 						.getString(R.string.btn_cancel),
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
 							}

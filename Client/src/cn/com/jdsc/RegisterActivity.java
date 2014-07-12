@@ -21,9 +21,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 
-
-import com.google.android.gms.internal.e;
-
 import android.R.string;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

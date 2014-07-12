@@ -72,7 +72,9 @@ public class LoginActivity extends Activity {
 		final Button registerButton = (Button) findViewById(R.id.register_link);
 		mTextView = (TextView) findViewById(R.id.textView1);
 		// Link UI elements to actions in code
-
+		
+		
+		
 		loginButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -213,8 +215,8 @@ public class LoginActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
-			String contentToPost = /*"isAndoid=True" + &*/"username=" + username + "&password=" + password;
-			final String url = "http://192.168.137.1:8000/login/";
+			String contentToPost = /*"isAndoid=True" + &*/"type=android&username=" + username + "&password=" + password;
+			final String url = "http://192.168.137.1:8000/login_view/";
 			
 			String loginResult = "";
 			HttpURLConnection httpUrlConnection = null;
@@ -263,10 +265,47 @@ public class LoginActivity extends Activity {
 			}
 			Log.e(TAG, "the login result is:" + loginResult);
 			Log.e(TAG, "Bolean:" + loginResult.equals("True"));
-			return loginResult.equals("True");
-			// TODO: register the new account here.		
+			//JSON
+			try {
+				String JSONResponse = loginResult.toString();
+				JSONObject responseObject = (JSONObject) new JSONTokener(JSONResponse).nextValue();
+				if ( responseObject.getString("islogin").equals("false"))
+					return false;
+				else{
+					setLoginState(JSONResponse);
+					return true;
+				}
+				
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}						
+			return loginResult.equals("True");												
 		}
 
+		//
+		private void setLoginState(String JSONResponse) {
+			// JSON
+			try {
+				// Get top-level JSON Object - a Map
+				JSONObject responseObject = (JSONObject) new JSONTokener(JSONResponse).nextValue();
+				CGCApp appState = ((CGCApp)getApplicationContext());
+				appState.setLoginState(true);
+				appState.setUsername(username);
+				appState.setPassword(password);
+				appState.setEmail(responseObject.getString("email"));
+				appState.setAddress(responseObject.getString("address"));
+				appState.setBalance(responseObject.getString("balance"));
+				appState.setRecordCount(responseObject.getString("recordCount"));
+				appState.setHistoryCount(responseObject.getString("historyCount"));
+							
+				appState.printState();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
@@ -301,7 +340,8 @@ public class LoginActivity extends Activity {
 				while ((line = reader.readLine()) != null) {
 					Log.e(TAG, "in readStrem" + line);
 					data.append(line);
-				}
+				}				
+							
 			} catch (IOException e) {
 				Log.e("test", "IOException");
 			} finally {

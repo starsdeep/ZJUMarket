@@ -1,5 +1,6 @@
 package cn.com.jdsc;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Currency;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,37 +46,29 @@ public class RecordListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		final ViewItem item;
-		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.record_item, null);
-			item = new ViewItem();
-			item.cancel = (Button) convertView.findViewById(R.id.reCancel);
-			item.recordImageView = (ImageView) convertView
-					.findViewById(R.id.reImage);
-			item.recordPrice = (TextView) convertView
-					.findViewById(R.id.rePrice);
-			item.recordState = (TextView) convertView
-					.findViewById(R.id.reState);
-			item.recordTitle = (TextView) convertView
-					.findViewById(R.id.reTitle);
-			convertView.setTag(item);
-		} else {
-			item = (ViewItem) convertView.getTag();
-		}
+		convertView = mInflater.inflate(R.layout.record_item, null);
+		item = new ViewItem();
+		item.cancel = (Button) convertView.findViewById(R.id.reCancel);
+		item.recordImageView = (ImageView) convertView
+				.findViewById(R.id.reImage);
+		item.recordPrice = (TextView) convertView.findViewById(R.id.rePrice);
+		item.recordState = (TextView) convertView.findViewById(R.id.reState);
+		item.recordTitle = (TextView) convertView.findViewById(R.id.reTitle);
+		convertView.setTag(item);
 		Product curProduct = RecordList.get(position);
-		Bitmap img=getBitmap(curProduct.productImage);
+		Bitmap img = getBitmap(curProduct.productImage);
 		item.recordImageView.setImageBitmap(img);
-		item.recordPrice.setText("￥"+curProduct.price);
-		String state="";
-		if(curProduct.issold){
-			state="交易完成";
+		item.recordPrice.setText("￥" + curProduct.price);
+		String state = "";
+		if (curProduct.issold) {
+			state = "交易完成";
 			item.cancel.setVisibility(View.GONE);
+		} else {
+			state = "正在派送";
 		}
-		else{
-			state="正在派送";
-			}
 		item.recordState.setText(state);
 		item.recordTitle.setText(curProduct.description);
 		return convertView;

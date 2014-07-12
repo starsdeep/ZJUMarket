@@ -12,7 +12,8 @@ protected void onCreate(Bundle savedInstanceState) {
 }
   
   
-  public void onResume(){
+  @Override
+public void onResume(){
   	if(getRequestedOrientation()!=ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
   		  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
   	}

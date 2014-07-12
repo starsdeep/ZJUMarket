@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">陈国成二手物品交易市场</string>
-    <string name="ActivityMainTitle">陈国成二手物品交易市场</string>
+    <string name="app_name">陈国成帮您校园网购</string>
+    <string name="ActivityMainTitle">陈国成帮您校园网购</string>
     <string name="main_navigation_home">首页</string>
     <string name="main_navigation_catagory">分类</string>
     <string name="main_navigation_car">我的订单</string>
-    <string name="main_code_buy">我的京东</string>
+    <string name="main_code_buy">登录</string>
     <string name="main_navigation_more">更多</string>
     <string name="app_close">关闭应用程序</string>
     <string name="btn_cancel">取 消</string>
@@ -15,12 +15,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_nav">NavActivity</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
+    <string name="title_activity_record">RecordActivity</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>

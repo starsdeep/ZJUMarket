@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
 
-    <application
+    <application android:name=".CGCApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
@@ -29,12 +29,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".NavActivity"
-            android:label="@string/title_activity_nav" >
-        </activity>
-       <activity
-            android:name=".RecordActivity"/>
+	<activity android:name=".RecordActivity" />
+	<activity android:name=".UcenterActivity"/>
     </application>
 
 </manifest>

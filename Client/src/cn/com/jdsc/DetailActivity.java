@@ -64,12 +64,14 @@ public class DetailActivity extends Activity {
 	}
 
 	private class ReserveTask extends AsyncTask<Void, Void, String> {
-		private String username = "324159";
+		private String username;
 		private final String ip = "192.168.137.1:8000";
 		private String URL = "http://" + ip + "/reserve/";
 		private final String TAG = "ReserveTask";
 		@Override
 		protected String doInBackground(Void... params) {
+			CGCApp appState= ((CGCApp)getApplicationContext());
+			username=appState.getUsername();
 			HttpURLConnection httpUrlConnection = null;
 			String data="";
 			try{
@@ -139,6 +141,7 @@ public class DetailActivity extends Activity {
 		return bitmap;
 	}
 
+	@Override
 	public void onResume() {
 		if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

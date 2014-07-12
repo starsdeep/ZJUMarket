@@ -11,7 +11,8 @@ public class CarActivity extends Activity {
     	setContentView(R.layout.main_car);
     }
     
-    public void onResume(){
+    @Override
+	public void onResume(){
     	if(getRequestedOrientation()!=ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
     		  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     	}
