@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/empty_cart_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffefebe7" >
+
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip" >
+
+        <ImageView
+            android:id="@+id/titleBg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#106184" />
+
+        <ImageView
+            android:id="@+id/progressImage"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/android_title_bg_progress"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/titleRightButton"
+            style="\@style/title_right_button"
+            android:layout_width="100.0dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5.0dip"
+            android:layout_marginTop="2.0dip"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="10.0dip"
+            android:singleLine="true"
+            android:text="我的京东"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+    </RelativeLayout>
+
+    <!-- - 根节点 -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/top_relative"
+        android:layout_marginLeft="7.0dip"
+        android:layout_marginRight="7.0dip"
+        android:layout_marginTop="5.0dip"
+        android:orientation="vertical"
+        android:paddingTop="5.0dip" >
+
+        <RelativeLayout
+            android:id="@+id/first_part"
+            android:layout_width="fill_parent"
+            android:layout_height="80dip"
+            android:layout_marginTop="5.0dip"
+            android:orientation="horizontal"
+            android:paddingTop="5.0dip" >
+
+            <!-- - 头像 -->
+
+            <ImageView
+                android:id="@+id/ucenter_userimg"
+                android:layout_width="80dip"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:scaleType="fitStart"
+                android:src="@drawable/user" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/ucenter_userimg"
+                android:layout_alignTop="@+id/ucenter_userimg"
+                android:layout_toRightOf="@+id/ucenter_userimg"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/ucenter_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10.0dip"
+                    android:text="廖翊康"
+                    android:textColor="#000"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ucenter_usersign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="7.0dip"
+                    android:layout_toRightOf="@+id/ucenter_username"
+                    android:text="我是来搞笑的"
+                    android:textColor="#000" />
+
+                <!-- - 分割线 -->
+
+                <ImageView
+                    android:id="@+id/ucenter_usersepline"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ucenter_username"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2.0dip"
+                    android:src="@drawable/line_read_option" />
+
+                <LinearLayout
+                    android:id="@+id/ucenter_usersummery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/ucenter_usersepline"
+                    android:layout_marginTop="3.0dip"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/ucenter_balance_count_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/ucenter_balance_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="1sp"
+                            
+                            android:textColor="#000"                           
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/ucenter_static_balance_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="2sp"
+                            android:text="我的余额"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ucenter_history_count_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/ucenter_record_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="1sp"
+                            
+                            android:textColor="#000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/ucenter_static_record_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="2sp"
+                            android:text="我的订单"
+                            android:textColor="#000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ucenter_histroy_count_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/ucenter_history_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="1sp"
+                            
+                            android:textColor="#000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/ucenter_static_favor_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="2sp"
+                            android:text="我的购买"
+                            android:textColor="#000" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/secont_part_relative_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/first_part"
+            android:layout_marginTop="15.0dip"
+            android:orientation="vertical"
+            android:paddingTop="5.0dip" >
+
+            <LinearLayout
+                android:id="@+id/ucenter_secont_part_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <!-- - 分割线 -->
+
+                <ImageView                  
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2.0dip"
+                    android:src="@drawable/line_read_option" />
+
+                <LinearLayout
+                    android:id="@+id/ucenter_nickname_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12.0dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/ucenter_static_nickname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:text="昵称"
+                        android:textColor="#000" />
+
+                    <EditText
+                        android:id="@+id/ucenter_nickname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="3"
+                        android:background="@android:color/transparent"
+                        android:textSize="14sp"
+                        android:hint="陈国成二手市场就是好"
+                        android:textColor="#000" />
+                    
+                </LinearLayout>
+                
+              
+                <!-- - 分割线 -->
+
+                <ImageView
+                    android:id="@+id/ucenter_usersepline1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2.0dip"
+                    android:src="@drawable/line_read_option" />
+
+                <LinearLayout
+                    android:id="@+id/ucenter_email_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12.0dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/ucenter_static_email"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:text="邮箱"
+                        android:textColor="#000" />
+
+                    <EditText
+                        android:id="@+id/ucenter_email"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="3"
+                        android:background="@android:color/transparent"
+                        
+                        android:textSize="14sp"
+                        android:textColor="#000" />
+                    
+                </LinearLayout>
+
+                <!-- - 分割线 -->
+
+                <ImageView                
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2.0dip"
+                    android:src="@drawable/line_read_option" />
+
+                <LinearLayout
+                    android:id="@+id/ucenter_account_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12.0dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/ucenter_static_account"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:text="我的账户"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/ucenter_account"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="3"
+                        android:text="点击查看/充值"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                
+                
+                
+                 <!-- - 分割线 -->
+
+                <ImageView                
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2.0dip"
+                    android:src="@drawable/line_read_option" />
+
+                <LinearLayout
+                    android:id="@+id/ucenter_histroy_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12.0dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/ucenter_static_history"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:text="我的购买记录"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/ucenter_history"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="3"
+                        android:text="点击查看详细"
+                        android:textColor="#000" />
+                </LinearLayout>
+                
+                
+                
+                <!-- - 分割线 -->
+
+                <ImageView
+                    android:id="@+id/ucenter_usersepline2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2.0dip"
+                    android:src="@drawable/line_read_option" />
+
+                <LinearLayout
+                    android:id="@+id/ucenter_address_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12.0dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/ucenter_static_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:text="收货地址"
+                        android:textColor="#000" />
+
+                    <EditText
+                        android:id="@+id/ucenter_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="3"            
+                        android:textSize="14sp"
+                        android:background="@android:color/transparent"
+                        android:textColor="#000" />
+                        
+                        
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/ucenter_confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp"
+            android:text="确认保存"
+            android:textColorHint="@color/light_gray" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
