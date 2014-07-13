@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reempty_cart_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff" >
+
+   <RelativeLayout
+        android:id="@+id/retop_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/banner_unit" >
+
+        <ImageView
+            android:id="@+id/iv_record_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dip"
+            android:layout_marginTop="2dip"
+            android:clickable="true"
+            android:src="@drawable/booklist_menu_normal" />
+        
+        <TextView
+            android:id="@+id/retitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的订单记录"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <Spinner
+            android:id="@+id/respin"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" 
+            android:entries="@array/cate"/>
+
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/recordlist"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" 
+        android:layout_width="fill_parent"
+        android:clickable="true"
+      	android:layout_marginTop="60dp"
+      	android:cacheColorHint="#00000000"
+      	android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/recordbar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>

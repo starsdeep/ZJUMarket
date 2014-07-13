@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dip"
         android:background="@drawable/oper_title2"
-        android:gravity="center"
         android:paddingTop="5.0dip" >
 
         <ImageView
@@ -26,9 +25,9 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            
             android:layout_centerVertical="true"
-            android:layout_marginRight="14dp"
+            
             android:layout_toRightOf="@+id/siderbar_userimg"
             android:gravity="left"
             android:text="廖翊康"
@@ -188,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="二维码支付"
+                android:text="二维码支付          "
                 android:textColor="#000" />
         </LinearLayout>
         
@@ -212,7 +211,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15.0dip"
                 android:gravity="center"
                 android:text="关于"
                 android:textColor="#000" />

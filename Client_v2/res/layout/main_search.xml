@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/empty_cart_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/banner_unit">
+		
+        <ImageView
+            android:id="@+id/iv_home_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dip"
+            android:layout_marginTop="2dip"
+            android:clickable="true"
+            android:src="@drawable/booklist_menu_normal" />
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#000"
+            android:layout_weight="0.8"
+            android:text="搜索"
+            android:textSize="17dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/searchcontent"
+        android:layout_alignBottom="@+id/searchcontent"
+        android:layout_toRightOf="@+id/searchcontent"
+        android:text="搜索物品" />
+
+    <EditText
+        android:id="@+id/searchcontent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/top_relative"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="30dp"
+        android:ems="10" />
+    <TextView
+        android:id="@+id/hidwarn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchcontent"
+        android:text="请输入搜索内容！"
+        android:layout_margin="15dp"
+        android:visibility="invisible"
+        android:textSize="20dp"
+        android:textColor="#FF322C"
+        />
+    <ListView      
+        android:id="@+id/mainlist"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" 
+        android:layout_width="fill_parent"
+        android:clickable="true"
+      	android:layout_marginTop="130dp"
+      	android:cacheColorHint="#00000000"
+      	android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/HomeprogressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hidwarn"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

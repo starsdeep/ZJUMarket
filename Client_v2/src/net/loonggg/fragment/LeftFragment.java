@@ -45,14 +45,14 @@ public class LeftFragment extends Fragment {
 //		});
 //		
 //		
-//		searchLayout.setOnClickListener(new View.OnClickListener() {
-//			public void onClick(View v) {
-//				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-//				ft.replace(R.id.center_frame, new searchFragment());
-//				ft.commit();
-//				((MainActivity) getActivity()).showLeft();
-//			}
-//		});
+		searchLayout.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+				ft.replace(R.id.center_frame, new SearchFragment());
+				ft.commit();
+				((MainActivity) getActivity()).showLeft();
+			}
+		});
 //		
 //		accountLayout.setOnClickListener(new View.OnClickListener() {
 //			public void onClick(View v) {
@@ -72,14 +72,14 @@ public class LeftFragment extends Fragment {
 //			}
 //		});
 //		
-//		recordLayout.setOnClickListener(new View.OnClickListener() {
-//			public void onClick(View v) {
-//				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-//				ft.replace(R.id.center_frame, new recordFragment());
-//				ft.commit();
-//				((MainActivity) getActivity()).showLeft();
-//			}
-//		});
+		recordLayout.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+				ft.replace(R.id.center_frame, new RecordFragment());
+				ft.commit();
+				((MainActivity) getActivity()).showLeft();
+			}
+		});
 //		
 //		nfcLayout.setOnClickListener(new View.OnClickListener() {
 //			public void onClick(View v) {

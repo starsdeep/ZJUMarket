@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application android:name=".CGCApp"
         android:allowBackup="true"
@@ -22,8 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="net.loonggg.fragment.DetailsActivity" >
-        </activity>
+        <activity android:name="net.loonggg.fragment.DetailsActivity" />
+        <activity android:name="net.loonggg.fragment.DetailActivity" />
     </application>
 
 </manifest>

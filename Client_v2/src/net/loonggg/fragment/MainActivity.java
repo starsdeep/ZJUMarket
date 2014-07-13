@@ -11,8 +11,8 @@ import android.view.Window;
 public class MainActivity extends Activity {
 	private SlidingMenu mSlidingMenu;// 侧边栏的view
 	private LeftFragment leftFragment; // 左侧边栏的碎片化view
-	private RightFragment rightFragment; // 右侧边栏的碎片化view
-	private SampleListFragment centerFragment;// 中间内容碎片化的view
+	/*private RightFragment rightFragment; // 右侧边栏的碎片化view
+*/	private SampleListFragment centerFragment;// 中间内容碎片化的view
 	private FragmentTransaction ft; // 碎片化管理的事务
 
 	@Override
@@ -30,9 +30,9 @@ public class MainActivity extends Activity {
 
 		ft = this.getFragmentManager().beginTransaction();
 		leftFragment = new LeftFragment();
-		rightFragment = new RightFragment();
+/*		rightFragment = new RightFragment();*/
 		ft.replace(R.id.left_frame, leftFragment);
-		ft.replace(R.id.right_frame, rightFragment);
+		/*ft.replace(R.id.right_frame, rightFragment);*/
 
 		centerFragment = new SampleListFragment();
 		ft.replace(R.id.center_frame, centerFragment);

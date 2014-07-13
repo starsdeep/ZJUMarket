@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/empty_cart_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffefebe7" >
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/banner_unit" >
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="标题"
+            android:textColor="#000"
+            android:textSize="17dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/middlecontent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_relative"
+        android:background="#ffffff"
+        >
+
+        <ImageView
+            android:id="@+id/productbigimage"
+            android:layout_width="fill_parent"
+            android:layout_height="200dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bicycle"
+             />
+        <TextView
+            android:id="@+id/producttitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="极品山地自行车"
+            android:textSize="30dp"
+            android:layout_below="@id/productbigimage"
+            android:layout_margin="20dp"/>
+        <View android:layout_width="match_parent"
+            android:id="@+id/titledesline"
+            android:layout_below="@id/producttitle"
+            android:layout_height="1dip"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#666666" />
+        
+        <LinearLayout
+            android:id="@+id/linearmid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titledesline"
+            android:layout_margin="20dp"
+            >
+
+        <TextView
+            android:id="@+id/productdes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="物品描述信息，这个东西好好呀好好呀感觉自己萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒萌萌哒，谁都不要让我吃药！"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/productprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="价格：
+            ￥50.0"
+            android:textSize="23dp" />
+
+        </LinearLayout>
+        <View android:layout_width="match_parent"
+            android:id="@+id/desline"
+            android:layout_below="@id/linearmid"
+            android:layout_height="1dip"
+            android:background="#666666" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/seller"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/middlecontent"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff">
+        
+        <View android:layout_width="match_parent"
+            android:id="@+id/sellerupline"
+            android:layout_height="1dip"
+            android:background="#999999" />
+        <TextView
+            android:id="@+id/sellername"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="卖家姓名："
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="23dp"
+            />
+        <TextView
+            android:id="@+id/sellerphone"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="联系方式："
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@id/sellername"
+            android:textSize="23dp"
+            />
+        <View android:layout_width="match_parent"
+            android:id="@+id/sellerdownline"
+            android:layout_height="1dip"
+            android:layout_below="@id/sellerphone"
+            android:layout_marginTop="10dp"
+            android:background="#999999" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/below_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/banner_unit">
+
+
+        <Button
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="70dp"
+            android:text="联系卖家" />
+
+        <Button
+            android:id="@+id/reserve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="70dp"
+            android:text="预订商品" />
+        
+    </RelativeLayout>
+
+</RelativeLayout>
