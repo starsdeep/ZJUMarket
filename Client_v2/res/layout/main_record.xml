@@ -31,7 +31,7 @@
 
         <Spinner
             android:id="@+id/respin"
-            android:layout_width="150sp"
+            android:layout_width="100sp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true" 

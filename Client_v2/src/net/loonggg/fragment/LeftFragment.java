@@ -35,14 +35,14 @@ public class LeftFragment extends Fragment {
 			}
 		});
 
-//		homeLayout.setOnClickListener(new View.OnClickListener() {
-//			public void onClick(View v) {
-//				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-//				ft.replace(R.id.center_frame, new homeFragment());
-//				ft.commit();
-//				((MainActivity) getActivity()).showLeft();
-//			}
-//		});
+		homeLayout.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+				ft.replace(R.id.center_frame, new HomeFragment());
+				ft.commit();
+				((MainActivity) getActivity()).showLeft();
+			}
+		});
 //		
 //		
 		searchLayout.setOnClickListener(new View.OnClickListener() {

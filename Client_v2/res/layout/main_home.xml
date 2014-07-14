@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/empty_cart_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/banner_unit">
+		
+        <ImageView
+            android:id="@+id/iv_home_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dip"
+            android:layout_marginTop="2dip"
+            android:clickable="true"
+            android:src="@drawable/booklist_menu_normal" />
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#000"
+            android:layout_weight="0.8"
+            android:text="主页"
+            android:textSize="14dp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dip">
+
+        <RelativeLayout
+            android:id="@+id/icon1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+            
+            <ImageView 
+                android:id="@+id/phoneicon"
+                android:src="@drawable/icon_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/phoneicon"
+                android:text="手机数码" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/icon2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+            
+            <ImageView 
+                android:id="@+id/clothicon"
+                android:src="@drawable/icon_cloth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/clothicon"
+                android:text="男女服装" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/icon3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+            
+            <ImageView 
+                android:id="@+id/bookicon"
+                android:src="@drawable/icon_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/bookicon"
+                android:text="图书影音" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dip">
+
+        <RelativeLayout
+            android:id="@+id/icon4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+            
+            <ImageView 
+                android:id="@+id/shoeicon"
+                android:src="@drawable/icon_shoe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/shoeicon"
+                android:text="鞋类箱包" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/icon5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+            
+            <ImageView 
+                android:id="@+id/jiadicon"
+                android:src="@drawable/icon_jiadian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/jiadicon"
+                android:text="家用电器" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/icon6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+            
+            <ImageView 
+                android:id="@+id/foodicon"
+                android:src="@drawable/icon_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/foodicon"
+                android:text="零食特产" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/homelist"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+      	android:layout_marginTop="170dp"
+      	android:cacheColorHint="#00000000"/>
+</RelativeLayout>

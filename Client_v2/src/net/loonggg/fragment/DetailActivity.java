@@ -52,6 +52,12 @@ public class DetailActivity extends Activity {
 		sellerphone.setText("商品网址： " + selectedProduct.phone);
 
 		Button reservebutton = (Button) findViewById(R.id.reserve);
+		CGCApp appState= ((CGCApp)getApplicationContext());
+		Boolean isin=appState.getLoginState();
+		if(!isin){
+			reservebutton.setText("请先登录！");
+			reservebutton.setClickable(false);
+		}
 		reservebutton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -71,6 +77,7 @@ public class DetailActivity extends Activity {
 		protected String doInBackground(Void... params) {
 			CGCApp appState= ((CGCApp)getApplicationContext());
 			username=appState.getUsername();
+			
 			HttpURLConnection httpUrlConnection = null;
 			String data="";
 			try{

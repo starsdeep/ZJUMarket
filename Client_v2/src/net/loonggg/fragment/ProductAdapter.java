@@ -4,6 +4,7 @@ package net.loonggg.fragment;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,8 @@ public class ProductAdapter extends BaseAdapter{
 		  mInflater = inflater;
 		  mphotoList=photoList;
 		 }
-	
-	
+
+
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -59,7 +60,7 @@ public class ProductAdapter extends BaseAdapter{
 		}
 		Product curProduct=mProductList.get(position);
 		item.productImageView.setImageBitmap(mphotoList.get(position));
-		item.productTitle.setText(curProduct.title);
+		item.productTitle.setText(curProduct.description);
 		item.productPrice.setText("￥"+curProduct.price);
 		return convertView;
 	}

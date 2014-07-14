@@ -29,7 +29,7 @@
             android:textColor="#000"
             android:layout_weight="0.8"
             android:text="搜索"
-            android:textSize="17dp" />
+            android:textSize="14dp" />
     </RelativeLayout>
 
     <Button

@@ -4,6 +4,7 @@ import net.loonggg.view.SlidingMenu;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,7 +13,7 @@ public class MainActivity extends Activity {
 	private SlidingMenu mSlidingMenu;// 侧边栏的view
 	private LeftFragment leftFragment; // 左侧边栏的碎片化view
 	/*private RightFragment rightFragment; // 右侧边栏的碎片化view
-*/	private SampleListFragment centerFragment;// 中间内容碎片化的view
+*/	private HomeFragment centerFragment;// 中间内容碎片化的view
 	private FragmentTransaction ft; // 碎片化管理的事务
 
 	@Override
@@ -34,7 +35,7 @@ public class MainActivity extends Activity {
 		ft.replace(R.id.left_frame, leftFragment);
 		/*ft.replace(R.id.right_frame, rightFragment);*/
 
-		centerFragment = new SampleListFragment();
+		centerFragment = new HomeFragment();
 		ft.replace(R.id.center_frame, centerFragment);
 		ft.commit();
 
@@ -52,7 +53,13 @@ public class MainActivity extends Activity {
 			break;
 		}
 	}
-
+	@Override
+	public void onResume(){
+    	if(getRequestedOrientation()!=ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
+    		  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    	}
+    	super.onResume();
+    }
 	public void showLeft() {
 		mSlidingMenu.showLeftView();
 	}

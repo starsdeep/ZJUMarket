@@ -88,8 +88,8 @@ public class LoginFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Log.e("test", "on login click ");
-				// new HttpGetTask().execute();
-				// attemptLogin();
+				//new HttpGetTask().execute();
+				attemptLogin();
 			}
 		});
 		// todo1 register

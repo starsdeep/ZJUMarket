@@ -18,7 +18,11 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,6 +52,26 @@ public class RecordFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View view=inflater.inflate(R.layout.main_record, container, false);
 		ImageView left=(ImageView)view.findViewById(R.id.iv_record_left);
+		CGCApp appState= ((CGCApp)getActivity().getApplicationContext());
+		Boolean isin=appState.getLoginState();
+		if(!isin){
+			AlertDialog.Builder builder = new Builder(getActivity());
+			builder.setTitle("请登录");
+			builder.setMessage("您还未登录，请先登录！");
+			builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+				
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					Fragment newFragment = new LoginFragment();
+					FragmentTransaction transaction =getFragmentManager().beginTransaction();
+					transaction.replace(R.id.center_frame, newFragment);
+					transaction.commit();
+				}
+			});
+			AlertDialog a=builder.create();
+			a.setCanceledOnTouchOutside(false);
+			a.show();
+		}
 		left.setOnClickListener(new OnClickListener() {
 			
 			@SuppressLint("NewApi")
