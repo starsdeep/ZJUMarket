@@ -29,6 +29,9 @@ urlpatterns = patterns('',
     (r'^post/$', post),
     (r'^usertest/$', usertest),
     (r'^buy/$', buy),
+    (r'^reserve/$', reserve),
+    (r'^balance/$',balance),
+    (r'^add/$',add),
 
 
     

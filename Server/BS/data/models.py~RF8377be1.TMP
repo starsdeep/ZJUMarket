@@ -8,9 +8,7 @@ from django.core import serializers
 class UserProfile(models.Model):  
 	user = models.ForeignKey(User, unique=True)
 	Money = models.DecimalField(max_digits=19, decimal_places=2,default = 0)
-	# CID = models.CharField(max_length=255)
 	Address = models.CharField(max_length=255,blank = True)
-
 
 
 	def __unicode__(self):
@@ -54,14 +52,11 @@ class QuerySetEncoder( simplejson.JSONEncoder ):
 class Paid_Record(models.Model):
 	User = models.ForeignKey(User)
 	PID = models.ForeignKey(Temporary_Query)
-	CID = models.CharField(max_length=255)
 	isBuy = models.BooleanField()
 
-class Money(models.Model):
-	user = models.ForeignKey(User)
-	Balance = models.DecimalField(max_digits=19, decimal_places=2)
-	# Date = models.DateField(auto_now = True)
-	Date = models.DateField()
-	Money = models.DecimalField(max_digits=19, decimal_places=2)
-	#default false
-	inORout = models.BooleanField()
+def post_post_save(sender, instance, created, *args, **kwargs):  
+    if created:
+        event = Event(user=instance.uid,event = instance)  
+        event.save()  
+
+post_save.connect(post_post_save, sender=articleDB)  
