@@ -31,7 +31,6 @@
             android:layout_toRightOf="@+id/siderbar_userimg"
             android:gravity="left"
             android:text="廖翊康"
-            
             android:textSize="17dip" />
 
     </RelativeLayout>

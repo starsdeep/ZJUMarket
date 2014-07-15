@@ -1,10 +1,12 @@
 package net.loonggg.fragment;
 
+
 import android.app.Application;
 import android.util.Log;
 
 public class CGCApp extends Application{
 
+	State s = State.INIT;
 	private boolean islogin = false;
 	private String username = "";
 	private String password ="" ;
@@ -13,7 +15,20 @@ public class CGCApp extends Application{
 	private String balance = "";
 	private String recordCount = "";
 	private String historyCount = "";
+	private String totalMoney="";
+	private String weekly_in = "";
+	private String weekly_out = "";
+	enum State {  
+		UCENTER,  HOME, SEARCH, ACCOUNT, RECORD,HISTORY,NFC,PIC,SETTING,INIT
+	}
 	
+	public void setState(State s) {
+        this.s = s;
+    }
+	
+	public State getState() {
+        return this.s;
+    }
 	
 	
 	public void setLoginState(boolean b) {
@@ -79,6 +94,33 @@ public class CGCApp extends Application{
 	public String getHistoryCount() {
         return this.historyCount;
     }
+	
+	public void setTotalMoney(String u) {
+        this.totalMoney = u;
+    }
+	
+	public String getTotalMoney() {
+        return this.totalMoney;
+    }
+	
+	public void setWeekIn(String u) {
+        this.weekly_in = u;
+    }
+	
+	public String getWeekIn() {
+        return this.weekly_in;
+    }
+	
+	public void setWeekOut(String u) {
+        this.weekly_out = u;
+    }
+	
+	public String getWeekOut() {
+        return this.weekly_out;
+    }
+	
+	
+	
 	
 	public void printState(){
 		Log.e("appState", "&username:" + username + "&email:" + email);

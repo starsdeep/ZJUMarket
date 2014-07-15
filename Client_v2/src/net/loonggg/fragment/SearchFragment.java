@@ -45,6 +45,7 @@ public class SearchFragment extends Fragment {
 	private List<Bitmap> photolist;
 	private String key;
 	private Boolean isopen=true;
+	int state=0;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)   
     {    
@@ -56,6 +57,7 @@ public class SearchFragment extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				((MainActivity)getActivity()).showLeft();
+				state=0;
 			}
 		});
         return view;
@@ -98,6 +100,18 @@ public class SearchFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		if(state==0){
+		Bundle bundle=getArguments();
+		if (bundle != null) {
+			key=bundle.getString("key");
+			mProductList = new Vector<Product>();
+			photolist=new Vector<Bitmap>();
+			ProgressBar mainbar = (ProgressBar) getActivity().findViewById(R.id.HomeprogressBar);
+			mainbar.setVisibility(View.VISIBLE);
+			new cata1GetTask().execute();
+			state=1;
+		}
+		}
 		Button searchButton = (Button) getActivity().findViewById(R.id.search);
 		searchButton.setOnClickListener(new Button.OnClickListener() {
 
@@ -157,7 +171,7 @@ public class SearchFragment extends Fragment {
 			try {
 				JSONArray JSONlist = (JSONArray) new JSONTokener(data)
 						.nextValue();
-				for (int i = 0; i < JSONlist.length() && i < 30; i++) {
+				for (int i = 0; i < JSONlist.length() && i < 15; i++) {
 					JSONObject tmpJSON = (JSONObject) JSONlist.get(i);
 					JSONObject field = tmpJSON.getJSONObject("fields");
 					mProductList.add(new Product(field.getString("Keyword"),
@@ -180,6 +194,7 @@ public class SearchFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(String result) {
+			state=1;
 			ProgressBar mainbar = (ProgressBar) getActivity().findViewById(R.id.HomeprogressBar);
 			mainbar.setVisibility(View.GONE);
 			if(!isopen){
