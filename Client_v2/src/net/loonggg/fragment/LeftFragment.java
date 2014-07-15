@@ -1,8 +1,10 @@
 package net.loonggg.fragment;
 
+import com.zxing.activity.CaptureActivity;
 import net.loonggg.fragment.CGCApp.State;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class LeftFragment extends Fragment {
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 
+		if (resultCode == 111) {
+			Bundle bundle = data.getExtras();
+			String scanResult = bundle.getString("result");
+		}
+	}
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.left_fragment, null);
@@ -27,10 +37,10 @@ public class LeftFragment extends Fragment {
 				.findViewById(R.id.accountLayout);
 		LinearLayout recordLayout = (LinearLayout) view
 				.findViewById(R.id.recordLayout);
-		// LinearLayout nfcLayout = (LinearLayout)
-		// view.findViewById(R.id.nfcLayout);
-		// LinearLayout picLayout = (LinearLayout)
-		// view.findViewById(R.id.picLayout);
+		LinearLayout nfcLayout = (LinearLayout) view
+				.findViewById(R.id.nfcLayout);
+		LinearLayout picLayout = (LinearLayout) view
+				.findViewById(R.id.picLayout);
 		// LinearLayout settingLayout = (LinearLayout)
 		// view.findViewById(R.id.settingLayout);
 
@@ -64,16 +74,16 @@ public class LeftFragment extends Fragment {
 				((MainActivity) getActivity()).showLeft();
 			}
 		});
-		//
-		// accountLayout.setOnClickListener(new View.OnClickListener() {
-		// public void onClick(View v) {
-		// FragmentTransaction ft =
-		// getActivity().getFragmentManager().beginTransaction();
-		// ft.replace(R.id.center_frame, new searchFragment());
-		// ft.commit();
-		// ((MainActivity) getActivity()).showLeft();
-		// }
-		// });
+		
+		 accountLayout.setOnClickListener(new View.OnClickListener() {
+		 public void onClick(View v) {
+		 FragmentTransaction ft =
+		 getActivity().getFragmentManager().beginTransaction();
+		 ft.replace(R.id.center_frame, new AccountFragment());
+		 ft.commit();
+		 ((MainActivity) getActivity()).showLeft();
+		 }
+		});
 		//
 		// accountLayout.setOnClickListener(new View.OnClickListener() {
 		// public void onClick(View v) {
@@ -95,19 +105,23 @@ public class LeftFragment extends Fragment {
 			}
 		});
 		//
-		// nfcLayout.setOnClickListener(new View.OnClickListener() {
-		// public void onClick(View v) {
-		// FragmentTransaction ft =
-		// getActivity().getFragmentManager().beginTransaction();
-		// ft.replace(R.id.center_frame, new nfcFragment());
-		// ft.commit();
-		// ((MainActivity) getActivity()).showLeft();
-		// }
-		// });
+		nfcLayout.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), NFCActivity.class);
+				startActivity(intent);
+			}
+		});
 
+		picLayout.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), CaptureActivity.class);
+				startActivity(intent);
+			}
+		});
 		// nfc activity
 		// pic activtiy
 		// setting
+		
 		return view;
 	}
 

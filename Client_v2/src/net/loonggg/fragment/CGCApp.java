@@ -1,6 +1,9 @@
 package net.loonggg.fragment;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.app.Application;
 import android.util.Log;
 
@@ -18,9 +21,23 @@ public class CGCApp extends Application{
 	private String totalMoney="";
 	private String weekly_in = "";
 	private String weekly_out = "";
+	private ArrayList<Double> balanceList = new ArrayList<Double>(); 
 	enum State {  
-		UCENTER,  HOME, SEARCH, ACCOUNT, RECORD,HISTORY,NFC,PIC,SETTING,INIT
+		INIT,UCENTER,  HOME, SEARCH, ACCOUNT, RECORD,HISTORY,NFC,PIC,SETTING
 	}
+	
+	public ArrayList<Double> getBalanceList(){
+		return this.balanceList;
+	}
+	
+	public void printBalanceList(){
+		Iterator it = balanceList.iterator();
+        while(it.hasNext()){
+            Log.e("in CGCApp", "" + it.next());
+        }
+		
+	}
+	
 	
 	public void setState(State s) {
         this.s = s;

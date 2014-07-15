@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context="com.example.test7.CountActivity" >
+
+    <RelativeLayout
+        android:id="@+id/top_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/banner_unit" >
+
+        <ImageView
+            android:id="@+id/iv_home_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dip"
+            android:layout_marginTop="2dip"
+            android:clickable="true"
+            android:src="@drawable/booklist_menu_normal" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="0.8"
+            android:text="我的账户"
+            android:textColor="#000"
+            android:textSize="17dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/totalLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="50dp" >
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总金额(元)"
+                android:textColor="#3C3C3C"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/total_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+                android:textColor="#E60012"
+                android:textSize="96px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/consume_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EEEEEE"
+            android:orientation="horizontal"
+            android:paddingBottom="25dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="25dp" >
+
+            <TextView
+                android:id="@+id/assume_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近一周支出(元)		"
+                android:textColor="#3C3C3C"
+                android:textSize="17dip" />
+
+            <TextView
+                android:id="@+id/weekly_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+                android:textColor="#E60012"
+                android:textSize="17dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/income_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EEEEEE"
+            android:orientation="horizontal"
+            android:paddingBottom="25dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="25dp" >
+
+            <TextView
+                android:id="@+id/income_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近一周收入(元)		"
+                android:textColor="#3C3C3C"
+                android:textSize="17dip" />
+
+            <TextView
+                android:id="@+id/weekly_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+                android:textColor="#E60012"
+                android:textSize="17dip" />
+        </LinearLayout>
+        
+        <LinearLayout
+        android:id="@+id/button_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/in_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="" />
+
+        <Button
+            android:id="@+id/in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="充值" />
+    </LinearLayout>
+        
+        
+        
+        
+        
+    </LinearLayout>
+
+    
+
+</LinearLayout>

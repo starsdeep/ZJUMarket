@@ -1,48 +1,30 @@
-package cn.com.jdsc;
+package net.loonggg.fragment;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.Socket;
 import java.net.URL;
-import java.net.UnknownHostException;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 //import com.google.android.gms.internal.e;
 
-import android.R.string;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
+
 import android.app.Activity;
-import android.content.Intent;
-import android.database.CursorJoiner.Result;
-import android.net.Uri;
-import android.nfc.Tag;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class PayActivity extends Activity {
+public class PayActivity extends Activity{
 
 	private PayTask mAuthTask = null;
 	private String ID;
@@ -141,18 +123,18 @@ public class PayActivity extends Activity {
 					// Log.e("res",responseObject.getString("state"));
 					if (responseObject.getString("state").equals("True")) {
 						balance = responseObject.getString("money");
-						msg = "÷ß∏∂≥…π¶";
+						msg = "ÊîØ‰ªòÊàêÂäü";
 						return true;
 					}
 
 					else if (responseObject.getString("state").equals("False")) {
 						Log.e("res", "False");
-						msg = "”‡∂Ó≤ª◊„";
+						msg = "‰ΩôÈ¢ù‰∏çË∂≥";
 						return false;
 					} else if (responseObject.getString("state").equals(
 							"Invalid")) {
 						Log.e("res", "Invalid");
-						msg = "∂©µ•π˝∆⁄";
+						msg = "ËÆ¢ÂçïËøáÊúü";
 						return false;
 					}
 
@@ -180,7 +162,7 @@ public class PayActivity extends Activity {
 			if (success) {
 
 				Log.e("pay", "success");
-				Toast.makeText(PayActivity.this, "÷ß∏∂≥…π¶£¨”‡∂ÓŒ™£∫" + balance,
+				Toast.makeText(PayActivity.this, "ÊîØ‰ªòÊàêÂäüÔºå‰ΩôÈ¢ù‰∏∫Ôºö" + balance,
 						Toast.LENGTH_LONG).show();
 				try {
 					Thread.sleep(10);
@@ -188,11 +170,7 @@ public class PayActivity extends Activity {
 					;
 				}
 
-				Intent NFCIntent = new Intent(PayActivity.this,
-						HomeActivity.class);
-
-				startActivity(NFCIntent);
-
+				PayActivity.this.finish();
 			} else {
 				Toast.makeText(PayActivity.this, msg, Toast.LENGTH_LONG).show();
 			}

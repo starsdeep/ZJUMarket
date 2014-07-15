@@ -26,6 +26,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.CursorJoiner.Result;
 import android.net.Uri;
@@ -88,7 +89,7 @@ public class LoginFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Log.e("test", "on login click ");
-				//new HttpGetTask().execute();
+				// new HttpGetTask().execute();
 				attemptLogin();
 			}
 		});
@@ -97,9 +98,8 @@ public class LoginFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Log.e("test", "on register click ");
-				// Intent intObj = new
-				// Intent(getBaseContext(),RegisterActivity.class);
-				// startActivity(intObj);
+				Intent intObj = new Intent(getActivity(),RegisterActivity.class);
+				startActivity(intObj);
 			}
 		});
 		
@@ -204,7 +204,7 @@ public class LoginFragment extends Fragment {
 
 	private boolean isEmailValid(String email) {
 		// TODO: Replace this with your own logic
-		return email.contains("@");
+		return true;
 	}
 
 	private boolean isPasswordValid(String password) {
@@ -230,8 +230,7 @@ public class LoginFragment extends Fragment {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
-			String contentToPost = /* "isAndoid=True" + & */"type=android&username="
-					+ username + "&password=" + password;
+			String contentToPost = "type=android&username="	+ username + "&password=" + password;
 			final String url = "http://192.168.137.1:8000/login_view/";
 
 			String loginResult = "";
@@ -321,7 +320,12 @@ public class LoginFragment extends Fragment {
 				appState.setRecordCount(responseObject.getString("recordCount"));
 				appState.setHistoryCount(responseObject
 						.getString("historyCount"));
-
+				
+				appState.setTotalMoney(responseObject.getString("balance"));
+				appState.setWeekIn(responseObject.getString("week_in"));
+				appState.setWeekOut(responseObject.getString("week_out"));
+				
+				
 				appState.printState();
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -339,6 +343,10 @@ public class LoginFragment extends Fragment {
 				// Intent(LoginActivity.this,HomeActivity.class);
 				// startActivity(intObj);
 				Log.e(TAG, "successed !!!");
+				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+				ft.replace(R.id.left_frame, new LeftFragment());
+				ft.replace(R.id.center_frame, new SearchFragment());
+				ft.commit();
 				// finish();
 
 			} else {

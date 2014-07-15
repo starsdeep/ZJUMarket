@@ -40,6 +40,8 @@ public class MainActivity extends Activity {
 		ft.commit();
 
 	}
+	
+	
 
 	public void llronclick(View v) {
 		switch (v.getId()) {

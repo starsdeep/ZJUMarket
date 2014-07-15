@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class UcenterFragment extends Fragment {
@@ -61,6 +63,16 @@ public class UcenterFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.activity_ucenter, null);
+		
+		ImageView left=(ImageView)view.findViewById(R.id.iv_home_left);
+		left.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				((MainActivity)getActivity()).showLeft();
+			}
+		});
+		
 		return view;
 	}
 

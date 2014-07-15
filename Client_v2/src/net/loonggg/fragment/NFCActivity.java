@@ -1,4 +1,4 @@
-package cn.com.jdsc;
+package net.loonggg.fragment;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -50,7 +50,7 @@ public class NFCActivity extends Activity {
 		setContentView(R.layout.nfc);
 		promt = (TextView) findViewById(R.id.promt);
 
-		promt.setText("µÈ´ıNFCÉè±¸");
+		promt.setText("ç­‰å¾…NFCè®¾å¤‡");
 
 		image = (DrawView) findViewById(R.id.drawView1);
 		Animation rotate = AnimationUtils.loadAnimation(this,
@@ -61,12 +61,12 @@ public class NFCActivity extends Activity {
 		nfcAdapter = NfcAdapter.getDefaultAdapter(getApplicationContext());
 		String metaInfo = "";
 		if (nfcAdapter == null) {
-			metaInfo = "Éè±¸²»Ö§³ÖNFC£¡";
+			metaInfo = "è®¾å¤‡ä¸æ”¯æŒNFCï¼";
 			Toast.makeText(this, metaInfo, Toast.LENGTH_SHORT).show();
 			isNFC_support = false;
 		}
 		if (!nfcAdapter.isEnabled()) {
-			metaInfo = "ÇëÔÚÏµÍ³ÉèÖÃÖĞÏÈÆôÓÃNFC¹¦ÄÜ£¡";
+			metaInfo = "è¯·åœ¨ç³»ç»Ÿè®¾ç½®ä¸­å…ˆå¯ç”¨NFCåŠŸèƒ½ï¼";
 			Toast.makeText(this, metaInfo, Toast.LENGTH_SHORT).show();
 			isNFC_support = false;
 		}
@@ -109,7 +109,7 @@ public class NFCActivity extends Activity {
 
 		if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(this.getIntent()
 				.getAction())) {
-			// ´¦Àí¸Ãintent
+			// å¤„ç†è¯¥intent
 			processIntent(this.getIntent());
 		}
 	}
@@ -123,13 +123,13 @@ public class NFCActivity extends Activity {
 		if (isNFC_support == false)
 			return;
 
-		// È¡³ö·â×°ÔÚintentÖĞµÄTAG
+		// å–å‡ºå°è£…åœ¨intentä¸­çš„TAG
 		tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 		metaInfo = bytesToHexString(tagFromIntent.getId());
 		Log.e("ID", metaInfo);
 
 		// promt.setTextColor(Color.BLUE);
-		Toast.makeText(NFCActivity.this, "Æ¥ÅäNFC³É¹¦", Toast.LENGTH_SHORT).show();
+		Toast.makeText(NFCActivity.this, "åŒ¹é…NFCæˆåŠŸ", Toast.LENGTH_SHORT).show();
 		image.clearAnimation();
 		try {
 			Thread.sleep(100);
