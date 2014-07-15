@@ -143,6 +143,7 @@ public class NFCActivity extends Activity {
 		PayIntent.putExtra("ID", metaInfo);
 		PayIntent.putExtra("type", "NFC");
 		startActivity(PayIntent);
+//		finish();
 
 	}
 

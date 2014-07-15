@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class LeftFragment extends Fragment {
 	@Override
@@ -21,8 +22,11 @@ public class LeftFragment extends Fragment {
 		if (resultCode == 111) {
 			Bundle bundle = data.getExtras();
 			String scanResult = bundle.getString("result");
+			Log.e("res","ssss");
+			Toast.makeText(getActivity(), "111", Toast.LENGTH_LONG).show();
 		}
 	}
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.left_fragment, null);
@@ -74,15 +78,15 @@ public class LeftFragment extends Fragment {
 				((MainActivity) getActivity()).showLeft();
 			}
 		});
-		
-		 accountLayout.setOnClickListener(new View.OnClickListener() {
-		 public void onClick(View v) {
-		 FragmentTransaction ft =
-		 getActivity().getFragmentManager().beginTransaction();
-		 ft.replace(R.id.center_frame, new AccountFragment());
-		 ft.commit();
-		 ((MainActivity) getActivity()).showLeft();
-		 }
+
+		accountLayout.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				FragmentTransaction ft = getActivity().getFragmentManager()
+						.beginTransaction();
+				ft.replace(R.id.center_frame, new AccountFragment());
+				ft.commit();
+				((MainActivity) getActivity()).showLeft();
+			}
 		});
 		//
 		// accountLayout.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +125,7 @@ public class LeftFragment extends Fragment {
 		// nfc activity
 		// pic activtiy
 		// setting
-		
+
 		return view;
 	}
 

@@ -3,6 +3,8 @@ package com.zxing.activity;
 import java.io.IOException;
 import java.util.Vector;
 
+import net.loonggg.fragment.NFCActivity;
+import net.loonggg.fragment.PayActivity;
 import net.loonggg.fragment.R;
 
 import android.app.Activity;
@@ -122,11 +124,18 @@ public class CaptureActivity extends Activity implements Callback {
 			Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
 		}else {
 //			System.out.println("Result:"+resultString);
-			Intent resultIntent = new Intent();
-			Bundle bundle = new Bundle();
-			bundle.putString("result", resultString);
-			resultIntent.putExtras(bundle);
-			this.setResult(RESULT_OK, resultIntent);
+//			Intent resultIntent = new Intent();
+//			Bundle bundle = new Bundle();
+//			bundle.putString("result", resultString);
+//			resultIntent.putExtras(bundle);
+//			this.setResult(111, resultIntent);
+			
+			Intent PayIntent = new Intent(CaptureActivity.this, PayActivity.class);
+//			PayIntent.putExtra("buy", "true");
+			PayIntent.putExtra("username", "324159");
+			PayIntent.putExtra("ID", resultString);
+			PayIntent.putExtra("type", "QR");
+			startActivity(PayIntent);
 		}
 		CaptureActivity.this.finish();
 	}
