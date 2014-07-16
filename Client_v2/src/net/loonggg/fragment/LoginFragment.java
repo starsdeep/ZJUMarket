@@ -43,6 +43,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class LoginFragment extends Fragment {
@@ -61,6 +62,7 @@ public class LoginFragment extends Fragment {
 	private View mLoginFormView;
 	private View mProgressView;
 	private ImageView left;
+	ProgressBar progressbar;
 	private static final String TAG = "IN Login Fragment";
 
 	@Override
@@ -73,7 +75,21 @@ public class LoginFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 
+		CGCApp appState = ((CGCApp) getActivity().getApplicationContext());
+		if(appState.getLoginState()){
+			Log.e(TAG, "successed !!!");
+			FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+			ft.replace(R.id.left_frame, new LeftFragment());
+			ft.replace(R.id.center_frame, new HomeFragment());
+			ft.commit();
+			return;
+		}
+		
+		
+		
 		// Initialize UI elements
+		progressbar = (ProgressBar)getActivity().findViewById(R.id.progressBar);
+		progressbar.setVisibility(View.GONE);
 		usernameText = (EditText) getActivity().findViewById(
 				R.id.login_input_name);
 		passwordText = (EditText) getActivity().findViewById(
@@ -83,8 +99,11 @@ public class LoginFragment extends Fragment {
 		Button registerButton = (Button) getActivity().findViewById(
 				R.id.register_link);
 		mTextView = (TextView) getActivity().findViewById(R.id.textView1);
-		// Link UI elements to actions in code
 		
+		
+		
+		
+		// Link UI elements to actions in code
 		loginButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -98,6 +117,9 @@ public class LoginFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Log.e("test", "on register click ");
+				
+				progressbar.setVisibility(View.VISIBLE);
+				
 				Intent intObj = new Intent(getActivity(),RegisterActivity.class);
 				startActivity(intObj);
 			}
@@ -337,7 +359,11 @@ public class LoginFragment extends Fragment {
 			mAuthTask = null;
 			Log.e(TAG, "success?" + success);
 			// showProgress(false);
-
+			
+			progressbar.setVisibility(View.VISIBLE);
+			
+			
+			
 			if (success) {
 				// Intent intObj = new
 				// Intent(LoginActivity.this,HomeActivity.class);

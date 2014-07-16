@@ -9,16 +9,26 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.net.UnknownHostException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+
+
+
+
+
+
+
 
 
 
@@ -39,8 +49,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class RegisterActivity extends Activity {
@@ -55,38 +68,40 @@ public class RegisterActivity extends Activity {
 	private DataOutputStream toServer;
 	private DataInputStream fromServer;
 	private EditText usernameText;
+	private EditText emailText;
 	private EditText passwordText1;
 	private EditText passwordText2;
 	private TextView RegisterErrorTextView;
 	private View mLoginFormView;
 	private View mProgressView;
 	private static final String TAG = "RegisterActivity";
+	private ProgressBar progressbar;
 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		Log.e(TAG, "in onCreate1");
-		// Restore any saved state
-		super.onCreate(savedInstanceState);
-		// Set content view
-		Log.e(TAG, "in onCreate2");
-		setContentView(R.layout.register);
-		Log.e(TAG, "in onCreate3");
-		// Initialize UI elements
-		usernameText = (EditText) findViewById(R.id.login_input_name);
-		Log.e(TAG, "in onCreate4");
-		passwordText1 = (EditText) findViewById(R.id.login_input_password);
-		Log.e(TAG, "in onCreate5");
-		passwordText2 = (EditText) findViewById(R.id.login_input_confirm_password);
-		Log.e(TAG, "in onCreate6");
 		
+		
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.register);
+		
+		
+		usernameText = (EditText) findViewById(R.id.login_input_name);
+		emailText = (EditText) findViewById(R.id.login_email);	
+		passwordText1 = (EditText) findViewById(R.id.login_input_password);	
+		passwordText2 = (EditText) findViewById(R.id.login_input_confirm_password);
+	
+		progressbar=(ProgressBar)findViewById(R.id.RegisterprogressBar);
+		progressbar.setVisibility(View.GONE);
 		final Button loginButton = (Button) findViewById(R.id.login_button);
 		final Button registerButton = (Button) findViewById(R.id.register_button);
 		RegisterErrorTextView = (TextView) findViewById(R.id.register_error);
 		Log.e(TAG, "in onCreate7");
+			
+				
 		
-		// Link UI elements to actions in code
+		
 		//login
 		loginButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
@@ -104,6 +119,7 @@ public class RegisterActivity extends Activity {
 		registerButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				progressbar.setVisibility(View.VISIBLE);
 				Log.e("test", "on click register button ");
 				attemptRegister();
 			}
@@ -117,13 +133,18 @@ public class RegisterActivity extends Activity {
 		passwordText1.setError(null);
 		passwordText2.setError(null);
 
-		String email = usernameText.getText().toString();
+		String username = usernameText.getText().toString();
+		String email = emailText.getText().toString();
 		String password1 = passwordText1.getText().toString();
 		String password2 = passwordText2.getText().toString();
 
 		boolean cancel = false;
 		View focusView = null;
 
+		
+		
+		
+		
 		// Check for a valid password1, if the user entered one.
 		if (!TextUtils.isEmpty(password1) && !isPasswordValid(password1)) {
 			passwordText1.setError(getString(R.string.error_invalid_password));
@@ -139,11 +160,11 @@ public class RegisterActivity extends Activity {
 		// Check for a valid email address.
 		if (TextUtils.isEmpty(email)) {
 			usernameText.setError(getString(R.string.error_field_required));
-			focusView = usernameText;
+			focusView = emailText;
 			cancel = true;
 		} else if (!isEmailValid(email)) {
 			usernameText.setError(getString(R.string.error_invalid_email));
-			focusView = usernameText;
+			focusView = emailText;
 			cancel = true;
 		}
 		//password1 and 2 must be the same
@@ -161,7 +182,7 @@ public class RegisterActivity extends Activity {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			//showProgress(true);
-			mAuthTask = new UserRegisterTask(email, password1);
+			mAuthTask = new UserRegisterTask(username,email, password1);
 			mAuthTask.execute((Void) null);
 		}
 
@@ -231,20 +252,29 @@ public class RegisterActivity extends Activity {
 	 */
 	public class UserRegisterTask extends AsyncTask<Void, Void, Boolean> {
 
-		private final String username;
-		private final String password;
-		private static final String TAG = "UserLoginTask";
+		private  String username;
+		private  String email;
+		private  String password;
+		private static final String TAG = "UserRegisterTask";
 		private String registerResult = "";
 
-		UserRegisterTask(String email, String password) {
-			this.username = email;
+		UserRegisterTask(String username, String email, String password) {
+			this.username = username;
+			this.email = email;
 			this.password = password;
+			
+			try {
+				this.username = URLEncoder.encode(username,"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
-			String contentToPost = /*"isAndoid=True" + &*/"username=" + username + "&password=" + password;
+			String contentToPost = /*"isAndoid=True" + &*/"type=android"+"&username=" + username + "&password=" + password +"&email=" + email ;
 			final String url = "http://192.168.137.1:8000/register/";
 			
 			
@@ -253,7 +283,7 @@ public class RegisterActivity extends Activity {
 			try {
 				//network access.
 				
-				Log.e(TAG, "socket about to up,username:" + username + "password:" + password);
+				Log.e(TAG, "contentToPost:" + contentToPost);
 				
 				Log.e(TAG, "about to connect");
 				httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
@@ -290,7 +320,7 @@ public class RegisterActivity extends Activity {
 				if (null != httpUrlConnection)
 					httpUrlConnection.disconnect();
 			}
-			Log.e(TAG, "the login result is:" + registerResult);
+			Log.e(TAG, "the register result is:" + registerResult);
 			Log.e(TAG, "Bolean:" + registerResult.equals("True"));
 			return registerResult.equals("True");
 			// TODO: register the new account here.		
@@ -300,16 +330,23 @@ public class RegisterActivity extends Activity {
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
 			Log.e(TAG, "success?" + success);
-			//showProgress(false);
-
+					
+			progressbar.setVisibility(View.GONE);	
+			
 			if (success) {
-				FragmentTransaction ft = getFragmentManager().beginTransaction();
-				ft.replace(R.id.center_frame, new SearchFragment());
-				ft.commit();
+				//FragmentTransaction ft = getFragmentManager().beginTransaction();
+				//ft.replace(R.id.center_frame, new HomeFragment());
+				//ft.commit();
 				//Intent intObj = new Intent(getBaseContext(),HomeActivity.class);
 				//startActivity(intObj);
-				//finish();
+				CGCApp appState = (CGCApp)getApplicationContext();
+				appState.setLoginState(true);
+				appState.setUsername(username);
+				appState.setPassword(password);
+				appState.setEmail("email");
 				
+				
+				finish();
 				
 			} else {
 				RegisterErrorTextView.setText(registerResult);
@@ -346,7 +383,6 @@ public class RegisterActivity extends Activity {
 			}
 			return data.toString();
 		}
-		
 		
 	}
 		

@@ -129,6 +129,16 @@
                     android:text="注册"
                     android:textColor="#ff000000"
                     android:textSize="20.0sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:layout_toRightOf="@+id/remember_user" />
+
             </RelativeLayout>
 
             <TextView
