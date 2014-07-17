@@ -184,9 +184,11 @@ public class PayActivity extends Activity implements Callback {
 		protected void onPostExecute(final Boolean success) {
 			orderTask = null;
 			Log.e("returnstate", success.toString());
-			if (!success)
+			if (!success){
 				Toast.makeText(PayActivity.this, "获取订单详情失败", Toast.LENGTH_LONG)
 						.show();
+				finish();
+			}
 			else {
 				TextView titleText = (TextView) findViewById(R.id.titleText);
 				ImageView imageview = (ImageView) findViewById(R.id.productbigimage);

@@ -106,6 +106,7 @@ public class LeftFragment extends Fragment {
 				CGCApp appState = ((CGCApp) getActivity()
 						.getApplicationContext());
 				Boolean isin = appState.getLoginState();
+				((MainActivity) getActivity()).showLeft();
 				if (!isin) {
 					AlertDialog.Builder builder = new Builder(getActivity());
 					builder.setTitle("请登录");
@@ -139,6 +140,7 @@ public class LeftFragment extends Fragment {
 				CGCApp appState = ((CGCApp) getActivity()
 						.getApplicationContext());
 				Boolean isin = appState.getLoginState();
+				((MainActivity) getActivity()).showLeft();
 				if (!isin) {
 					AlertDialog.Builder builder = new Builder(getActivity());
 					builder.setTitle("请登录");

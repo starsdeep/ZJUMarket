@@ -2,65 +2,166 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/empty_cart_view"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="#ffefebe7">
-  
+    android:layout_height="fill_parent"
+    android:background="#ffefebe7" >
 
     <RelativeLayout
         android:id="@+id/top_relative"
         android:layout_width="fill_parent"
-        android:layout_height="50.0dip" >
+        android:layout_height="50.0dip"
+        android:background="@drawable/banner_unit" >
 
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="确认订单"
+            android:textColor="#000"
+            android:textSize="17dp" />
+    </RelativeLayout>
 
-
-
-</RelativeLayout>
-
-         <ScrollView
-        android:id="@+id/regist_scroller"
+    <LinearLayout
+        android:id="@+id/blackline"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-         android:layout_below="@id/top_relative"
-         android:background="#ffefebe7">
+        android:layout_height="20dip"
+        android:layout_below="@id/top_relative"
+        android:background="#ffffff"
+        android:orientation="horizontal" />
 
-        <LinearLayout
+    <RelativeLayout
+        android:id="@+id/middlecontent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/blackline"
+        android:background="#ffffff" >
+
+        <ImageView
+            android:id="@+id/productbigimage"
+            android:layout_width="fill_parent"
+            android:layout_height="200dip"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/producttitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_below="@id/productbigimage"
+            android:layout_margin="5dp"
+            android:text=""
+            android:textSize="20dp" />
 
-            <RelativeLayout
-                android:id="@+id/regist_scroller_relative"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="10.0dip" >
+        <View
+            android:id="@+id/titledesline"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_below="@id/producttitle"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#666666" />
 
+        <LinearLayout
+            android:id="@+id/linearmid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titledesline"
+            android:layout_margin="5dp" >
 
-
-                <Button
-                    android:id="@+id/pay"
-                    android:layout_width="145.0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10.0dip"
-                    android:layout_marginTop="15.0dip"
-                    android:text="确认支付"
-                    android:background="@drawable/android_big_button_x"
-                    android:gravity="center"
-                    android:textColor="#ff000000"
-                    android:textSize="20.0sp" />
-                 
-
-                
-
-              
-            </RelativeLayout>
-            
             <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:textSize="24sp">
-        	</TextView>
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+                android:id="@+id/productdes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text=""
+                android:textSize="17dp" />
 
+            <TextView
+                android:id="@+id/productprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text=""
+                android:textSize="23dp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/desline"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_below="@id/linearmid"
+            android:background="#666666" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seller"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/middlecontent"
+        android:layout_marginTop="5dp"
+        android:background="#ffffff" >
+
+        <View
+            android:id="@+id/sellerupline"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#999999" />
+
+        <TextView
+            android:id="@+id/sellername"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="卖家姓名："
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/sellerphone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sellername"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="联系方式："
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/sellerdownline"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_below="@id/sellerphone"
+            android:layout_marginTop="5dp"
+            android:background="#999999" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/below_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/banner_unit" >
+
+        <Button
+            android:id="@+id/payreturn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="17dp"
+            android:layout_toRightOf="@+id/paybutton"
+            android:text="返回" />
+
+        <Button
+            android:id="@+id/paybutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="76dp"
+            android:text="确认支付" />
+    </RelativeLayout>
+
+</RelativeLayout>

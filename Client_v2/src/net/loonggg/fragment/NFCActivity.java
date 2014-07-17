@@ -58,17 +58,14 @@ public class NFCActivity extends Activity {
 		image.startAnimation(rotate);
 
 		isNFC_support = true;
-		nfcAdapter = NfcAdapter.getDefaultAdapter(getApplicationContext());
+		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
 		String metaInfo = "";
 		if (nfcAdapter == null) {
 			metaInfo = "设备不支持NFC！";
 			Toast.makeText(this, metaInfo, Toast.LENGTH_SHORT).show();
 			isNFC_support = false;
-		}
-		if (!nfcAdapter.isEnabled()) {
-			metaInfo = "请在系统设置中先启用NFC功能！";
-			Toast.makeText(this, metaInfo, Toast.LENGTH_SHORT).show();
-			isNFC_support = false;
+			finish();
 		}
 
 		if (isNFC_support == true) {
