@@ -45,6 +45,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginFragment extends Fragment {
 
@@ -118,7 +119,7 @@ public class LoginFragment extends Fragment {
 			public void onClick(View v) {
 				Log.e("test", "on register click ");
 				
-				progressbar.setVisibility(View.VISIBLE);
+				
 				
 				Intent intObj = new Intent(getActivity(),RegisterActivity.class);
 				startActivity(intObj);
@@ -251,6 +252,7 @@ public class LoginFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
+			progressbar.setVisibility(View.VISIBLE);
 			// TODO: attempt authentication against a network service.
 			String contentToPost = "type=android&username="	+ username + "&password=" + password;
 			final String url = "http://192.168.137.1:8000/login_view/";
@@ -367,8 +369,10 @@ public class LoginFragment extends Fragment {
 			if (success) {
 				// Intent intObj = new
 				// Intent(LoginActivity.this,HomeActivity.class);
-				// startActivity(intObj);
+				// startActivity(intObj)
 				Log.e(TAG, "successed !!!");
+				Toast toast = Toast.makeText(getActivity(), "登录成功，即将跳转到主页!", Toast.LENGTH_SHORT); 
+				toast.show(); 
 				FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
 				ft.replace(R.id.left_frame, new LeftFragment());
 				ft.replace(R.id.center_frame, new SearchFragment());

@@ -33,6 +33,7 @@ import org.json.JSONTokener;
 
 
 
+
 import android.R.string;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -55,6 +56,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
 
@@ -119,7 +121,6 @@ public class RegisterActivity extends Activity {
 		registerButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				progressbar.setVisibility(View.VISIBLE);
 				Log.e("test", "on click register button ");
 				attemptRegister();
 			}
@@ -274,6 +275,7 @@ public class RegisterActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
+			progressbar.setVisibility(View.VISIBLE);
 			String contentToPost = /*"isAndoid=True" + &*/"type=android"+"&username=" + username + "&password=" + password +"&email=" + email ;
 			final String url = "http://192.168.137.1:8000/register/";
 			
@@ -339,6 +341,8 @@ public class RegisterActivity extends Activity {
 				//ft.commit();
 				//Intent intObj = new Intent(getBaseContext(),HomeActivity.class);
 				//startActivity(intObj);
+				Toast toast = Toast.makeText(RegisterActivity.this, "注册成功，即将跳转到主页!", Toast.LENGTH_SHORT); 
+				toast.show(); 
 				CGCApp appState = (CGCApp)getApplicationContext();
 				appState.setLoginState(true);
 				appState.setUsername(username);
