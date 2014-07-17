@@ -108,12 +108,13 @@ public class RegisterActivity extends Activity {
 		loginButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.e("test", "on click login button ");
-				FragmentTransaction ft = getFragmentManager().beginTransaction();
-				ft.replace(R.id.center_frame, new LoginFragment());
-				ft.commit();
+//				Log.e("test", "on click login button ");
+//				FragmentTransaction ft = getFragmentManager().beginTransaction();
+//				ft.replace(R.id.center_frame, new LoginFragment());
+//				ft.commit();
 				//Intent intObj = new Intent(getBaseContext(),LoginActivity.class);
 				//startActivity(intObj);
+				finish();
 			}
 		});
 		Log.e(TAG, "in onCreate6");
@@ -348,13 +349,13 @@ public class RegisterActivity extends Activity {
 				appState.setLoginState(true);
 				appState.setUsername(username);
 				appState.setPassword(password);
-				appState.setEmail("email");
-				
+				appState.setEmail("email");				
 				
 				finish();
 				
 			} else {
 				RegisterErrorTextView.setText(registerResult);
+				
 			}
 		}
 

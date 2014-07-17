@@ -253,7 +253,7 @@ public class LoginFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			
+			progressbar.setVisibility(View.VISIBLE);	
 			// TODO: attempt authentication against a network service.
 			String contentToPost = "type=android&username="	+ username + "&password=" + password;
 			final String url = "http://192.168.137.1:8000/login_view/";
@@ -309,6 +309,9 @@ public class LoginFragment extends Fragment {
 			}
 			Log.e(TAG, "the login result is:" + loginResult);
 			Log.e(TAG, "Bolean:" + loginResult.equals("True"));
+			
+			if(loginResult.equals("False"))
+				return false;
 			// JSON
 			try {
 				String JSONResponse = loginResult.toString();
@@ -324,7 +327,7 @@ public class LoginFragment extends Fragment {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			return loginResult.equals("True");
+			return false;
 		}
 
 		//
@@ -363,7 +366,7 @@ public class LoginFragment extends Fragment {
 			Log.e(TAG, "success?" + success);
 			// showProgress(false);
 			
-			progressbar.setVisibility(View.VISIBLE);
+			progressbar.setVisibility(View.GONE);	
 			
 			
 			
