@@ -184,6 +184,7 @@ public class RegisterActivity extends Activity {
 			// perform the user login attempt.
 			//showProgress(true);
 			mAuthTask = new UserRegisterTask(username,email, password1);
+			progressbar.setVisibility(View.VISIBLE);
 			mAuthTask.execute((Void) null);
 		}
 
@@ -275,7 +276,7 @@ public class RegisterActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO: attempt authentication against a network service.
-			progressbar.setVisibility(View.VISIBLE);
+			
 			String contentToPost = /*"isAndoid=True" + &*/"type=android"+"&username=" + username + "&password=" + password +"&email=" + email ;
 			final String url = "http://192.168.137.1:8000/register/";
 			

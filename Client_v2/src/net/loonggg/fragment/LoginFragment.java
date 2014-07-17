@@ -189,6 +189,7 @@ public class LoginFragment extends Fragment {
 			// perform the user login attempt.
 			// showProgress(true);
 			mAuthTask = new UserLoginTask(email, password);
+			progressbar.setVisibility(View.VISIBLE);
 			mAuthTask.execute((Void) null);
 		}
 
@@ -252,7 +253,7 @@ public class LoginFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			progressbar.setVisibility(View.VISIBLE);
+			
 			// TODO: attempt authentication against a network service.
 			String contentToPost = "type=android&username="	+ username + "&password=" + password;
 			final String url = "http://192.168.137.1:8000/login_view/";
